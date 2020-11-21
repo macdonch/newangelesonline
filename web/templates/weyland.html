@@ -1,0 +1,1133 @@
+<html>
+    <head>
+        <style type = "text/css">
+
+            .serif {
+            font-family: "Times New Roman", Times, serif;
+            }
+
+            .sansserif {
+            font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .monospace {
+            font-family: "Lucida Console", Courier, monospace;
+            }
+
+            table {
+                margin-left: auto; 
+                margin-right: auto;
+                text-align: justify;
+                vertical-align: top;
+                font-family: sans-serif;
+            }
+
+            
+            tr {
+                border: 1px solid black;
+                text-align: justify;
+                vertical-align: top;
+            }
+
+            td {
+                min-width: 20%;
+                padding-left: 5px;
+                padding-left: 5px;
+                padding-top: 1px;
+                padding-bottom: 1px;
+            }
+
+            table.outer {
+                border: 1px solid black;
+            }
+
+            td.outer {
+                text-align: justify;
+                vertical-align: top;
+            }
+
+            th.outer {
+                text-align: justify;
+                vertical-align: top;
+            }
+
+            td.outer50 {
+                max-width: 50%;
+            }
+
+            th.outer50 {
+                max-width: 50%;
+            }
+
+            table.inner {
+                min-width: 100%;
+            }
+
+            th.inner {
+                min-width: 20%;
+            }
+
+            td.inner {
+                min-width: 20%;
+            }
+
+            tr.header {
+                background-color: #dddddd;
+            }
+
+            td.investmentText {
+                text-align: justify;
+            }
+
+            td.assetText {
+                text-align: justify;
+            }
+
+            button.btn {
+                text-align: justify;
+            }
+
+            td.checkbox {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script>
+
+            /* see https://www.valentinog.com/blog/html-table/ */
+
+            var arrInvestments = [
+                {Name: "-",
+                CardText: "-"},
+                {Name: "Healthcare Initiative",
+                CardText: "Gain capital based on the number of illness tokens in the city:<table><tr><td>\
+                    2 illnesses: 3 capital</td></tr><tr><td>3 illnesses: 5 capital</td></tr><tr><td>4+ illnesses: 7 capital</td></tr></table>"},
+                {Name: "Power Siphoning",
+                CardText: "Gain capital based on the number of outage tokens in the city:<table><tr><td>\
+                    1 outage: 3 capital</td></tr><tr><td>1 outages: 5 capital</td></tr><tr><td>3+ outages: 7 capital</td></tr></table>"},
+                {Name: "Union Agreement",
+                CardText: "Gain capital based on the number of Human First units in the city:<table><tr><td>\
+                    2 Human First: 3 capital</td></tr><tr><td>3 Human First: 5 capital</td></tr><tr><td>4+ Human First: 7 capital</td></tr></table>"},
+                {Name: "Laundering Scheme",
+                CardText: "Gain capital based on the number of Org Crime units in the city:<table><tr><td>\
+                    2 Org Crime: 3 capital</td></tr><tr><td>3 Org Crime: 5 capital</td></tr><tr><td>4+ Org Crime: 7 capital</td></tr></table>"},
+                {Name: "Militarized Police",
+                CardText: "Gain capital based on the number of PriSec units in the city:<table><tr><td>\
+                    1  PriSec: 3 capital</td></tr><tr><td>2  PriSec: 6 capital</td></tr><tr><td>3+ PriSec: 8 capital</td></tr></table>"},
+                {Name: "Short Sale",
+                CardText: "Gain capital based on the number of resources at 1 or less in the supply:<table><tr><td>\
+                    1 resource: 3 capital</td></tr><tr><td>2 resources: 5 capital</td></tr><tr><td>3+ resources: 7 capital</td></tr></table>"},
+                {Name: "Retail Sector",
+                CardText: "If consumables in the supply meets demand, gain 2 capital and then gain 2 additional capital for each consumable in the supply.\
+                 You cannot gain more than 6 capital from this card"},
+                {Name: "Energy Sector",
+                CardText: "If energy in the supply meets demand, gain 3 capital and then gain 2 additional capital for each energy in the supply.\
+                 You cannot gain more than 7 capital from this card"},
+                {Name: "Banking Sector",
+                CardText: "If credits in the supply meets demand, gain 2 capital and then gain 1 additional capital for each credit in the supply.\
+                 You cannot gain more than 6 capital from this card"},
+                {Name: "Technology Sector",
+                CardText: "If tech in the supply meets demand, gain 3 capital and then gain 1 additional capital for each tech in the supply.\
+                 You cannot gain more than 6 capital from this card"},
+                {Name: "Entertainment Sector",
+                CardText: "If entertainment in the supply meets demand, gain 2 capital and then gain 1 additional capital for each entertainment in the supply.\
+                 You cannot gain more than 6 capital from this card"},
+                {Name: "Populist Dismissal",
+                CardText: "Gain 1 capital for each district in protest or strike"}
+            ];
+
+            var arrAssets = [
+                {Name: "Select...", CardText: "-"},
+                {Name: "Aaron Marron", CardText: "When another player discards 1 or more cards to propose a counteroffer, he give those cards to you instead of placing them in the discard pile."},
+                {Name: "Alex Westlund", CardText: "END OF TURN: Choose 2 assests in play and swap them. If you choose any of your assets, lose 2 capital before the swap."},
+                {Name: "Bernice Mai", CardText: "END OF TURN: Give up to 2 cards from your hand to another player to gain capital equal to the number of cards given."},
+                {Name: "Braintrust", CardText: "The quantity of each action card type on your corp sheet is doubled. Your handsize is reduced by 1."},
+                {Name: "Bryan Stinson", CardText: "When you claim this card, discard it to steal 2 emergency actions from other players."},
+                {Name: "Caprice Nisei", CardText: "When a player proposes an offer, you may exhaust this card. If you do, they must declare exactly how they will resolve that action card and are bound to this declarations."},
+                {Name: "Chief Gorman", CardText: "After a counteroffer is propsed, you may exhaust this card to return the counteroffer to the countering player's hand unless they give you 2 capital. They cannot propose another counteroffer this turn."},
+                {Name: "Coach Walden", CardText: "When the player to your right wins a deal, gain 1 capital."},
+                {Name: "Eiko", CardText: "When a player abstains during the Support step, you may exhaust this card. If you do, that player must play 1 card in support of the main offer or lose 1 capital."},
+                {Name: "Elizabeth Mills", CardText: "Give this card to another player. The, choose whether that player must discard 3 action cards or draw 3 actions cards of the topmost type listed on their corp sheet."},
+                {Name: "Floyd 2X3A7C", CardText: "When you claim this card, draw 5 action cards (of any types). Your hand size is increased by 5."},
+                {Name: "Fumiko Yamamori", CardText: "END OF TURN: Choose 1 resource in the supply that is not at '0'. Reduce that resource by 1 to gain 2 capital."},
+                {Name: "Gurren Imaishi", CardText: "When you claim this card, discard it gain 5 capital."},
+                {Name: "Hernando Cortez", CardText: "When you claim this card, discard it to steal 1 asset from another player or to gain 2 capital."},
+                {Name: "Isable McGuire", CardText: "At the start of the Support step, you may exhaust this card to place 1 action card from the top of any action deck in support of either offer."},
+                {Name: "Jackson Howard", CardText: "When an asset card is revealed, you may exhaust this card to choose another player. If that player wins the deal, gain 2 capital."},
+                {Name: "Lily Lockwell", CardText: "At the start of a player's turn, if they has more capital than you, you may steal 1 random card from their  hand."},
+                {Name: "Locust Company", CardText: "At the start of the Support step, you may exhaust this card to choose a player. That player cannot play cards in support of the counteroffer."},
+                {Name: "Marco Cubrero", CardText: "END OF TURN: Steal 1 capital from any player or steal 2 capital fom the player with the most capital (if players are tied for most capital, choose 1 of those players)."},
+                {Name: "Mark Yale", CardText: "After a player proposes an offer, you may exhaust this card. If you do, that player cannot trade capital or assets until the end of the deal."},
+                {Name: "Midori", CardText: "When determining the winnder during the resolution step, if the offers are tied in support, you may exhaust this card to decide which player wins the deal."},
+                {Name: "Monica Singh", CardText: "When you lose a deal as the active player, you may steal 2 capital from the countering player."},
+                {Name: "Mr. Li", CardText: "END OF TURN: Choose any player, That player loses 1 capital and draws 2 action cards (of any types)."},
+                {Name: "'Mr. White'", CardText: "END OF TURN: Look at another players hand. You may steal one of those action cards."},
+                {Name: "Naoko Watanabe", CardText: "When you claim this card, discard it to claim the top 2 cards of the asset deck, one at a time."},
+                {Name: "Rachel Beckmann", CardText: "At the end of each deal, if you have 0 cards in ahnd, you may draw 1 actions card of the topmost type listed on your corp sheet."},
+                {Name: "Saul Eustecio", CardText: "When the countering player wins a deal, you may exhaust this card. If you do, gain 1 capital, then the active player gains 1 capital."},
+                {Name: "Sunny LeBeau", CardText: "When threat increases by 1 or more, you may draw 2 action cards of the topmost type listed on your corp sheet."},
+                {Name: "Susan Chen", CardText: "END OF TURN: Gain 2 capital. Then, give this card to another player."},
+                {Name: "Tanaka", CardText: "At the start of the Resolution step, you may discard this card to choose the active or countering player. The chosen player wins the deal."},
+                {Name: "The Fall Guy", CardText: "After you propose a main offer, you may discard this card t propose a counteroffer as well. Then, play proceeds immediately to the support step."},
+                {Name: "Thomas Haas", CardText: "END OF TURN: Look at the rival card that is partially under the board. You may swap your rival card with that card (both cards remain facedown)."},
+                {Name: "Toshiyuki Sakai", CardText: "When you claim this card, discard it to draw 2 action cards of each type. You do not discard down to your hand size this turn."},
+                {Name: "Wong Ya Ching", CardText: "When the effect of an illness token increase threat, gain 2 capital."}
+            ];
+
+            var arrEmergencyActions = [
+                {Name: "Select...",
+                CardText: "-"},
+                {Name: "Ruthless Tactics",
+                CardText: "Remove up to 4 enemy units from the city.<br>Then, increase unrest by 1 stage in 2 districts \
+                not in strike or outage."},
+                {Name: "Unpaid, Overclocked",
+                CardText: "Choose up to 2 resources and increase their quantity in the supply by 1.<br>Then, gain 4 capital \
+                and place 2 Human First units in the city."},
+                {Name: "Mandatory Quarantine",
+                CardText: "Remove up to 4 illness tokens from the city. Then, place 2 outage tokens in the city.<br>Illness \
+                tokens do not increase threat during this action."},
+                {Name: "Energy for All",
+                CardText: "Each player draws 4 actions cards of a type of his choice, starting with the<br>active player \
+                and proceeding clockwise."},
+                {Name: "Sweeps Week",
+                CardText: "Reduce unrest by up to 4 stages in any districts. Then, place 2 illness tokens in any districts."},
+                {Name: "Massive Reconstruction",
+                CardText: "Remove up to 3 outage tokens from the city. Then, place 2 orgcrime units in the city."}
+            ];
+
+            var arrHand = [];
+            
+            function drawBiotech() {
+                var url = "http://10.128.249.20:8080/newangeles/decks/biotech";
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with JSON data here
+                        arrHand.push(data);
+                        renderHand();
+                    })
+                    .catch(err => {
+                        // Do something for an error here
+                    })
+            }
+
+            function drawConstruction() {
+                var url = "http://10.128.249.20:8080/newangeles/decks/construction";
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with JSON data here
+                        arrHand.push(data);
+                        renderHand();
+                    })
+                    .catch(err => {
+                        // Do something for an error here
+                    })
+            }
+
+            function drawLabor() {
+                var url = "http://10.128.249.20:8080/newangeles/decks/labor";
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with JSON data here
+                        arrHand.push(data);
+                        renderHand();
+                    })
+                    .catch(err => {
+                        // Do something for an error here
+                    })
+            }
+
+            function drawMedia() {
+                var url = "http://10.128.249.20:8080/newangeles/decks/media";
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with JSON data here
+                        arrHand.push(data);
+                        renderHand();
+                    })
+                    .catch(err => {
+                        // Do something for an error here
+                    })
+            }
+
+            function drawSecurity() {
+                var url = "http://10.128.249.20:8080/newangeles/decks/security";
+                fetch(url)
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Work with JSON data here
+                        arrHand.push(data);
+                        renderHand();
+                    })
+                    .catch(err => {
+                        // Do something for an error here
+                    })
+            }
+
+            function generateTableHead(table, data) {
+                let thead = table.createTHead();
+                let row = thead.insertRow();
+                for (let key of data) {
+                    let th = document.createElement("th");
+                    let txt = document.createTextNode(key);
+                    th.appendChild(txt);
+                    row.appendChild(th);
+                }
+            }
+
+            function reGenerateHandTableX(table, data) {
+                for (var i = table.rows.length - 1; i > 0; i--) {
+                        table.deleteRow(i);
+                    }
+
+                for (let element of data) {
+                    let row = table.insertRow();
+                    for (key in element) {
+                        let cell = row.insertCell();
+                        let txt = document.createTextNode(element[key]);
+                        cell.appendChild(txt);
+                    }
+                    let cell = row.insertCell()
+                    let btn = document.createElement('input');
+                    btn.type = "button";
+                    btn.className = "btn";
+                    btn.id = key;
+                    btn.value = "Play";
+                    cell.appendChild(btn);
+                }
+            }
+
+            function reGenerateHandTable(table, data) {
+                for (var i = table.rows.length - 1; i > 0; i--) {
+                        table.deleteRow(i);
+                    }
+
+                for (var i = 0; i < data.length; i++) {
+                    element = data[i];
+                    let row = table.insertRow();
+                    for (key in element) {
+                        let cell = row.insertCell();
+                        let txt = document.createTextNode(element[key]);
+                        cell.appendChild(txt);
+                    }
+                    let cell = row.insertCell()
+                    let btn = document.createElement('input');
+                    btn.type = "button";
+                    btn.className = "btn";
+                    btn.id = "card" + i;
+                    btn.value = "Play";
+                    cell.appendChild(btn);
+                    var newBtn = document.getElementById(btn.id);
+                    newBtn.addEventListener("click", discardCard);
+                }
+            }
+
+            function generateTable(table, data) {
+                for (let element of data) {
+                    let row = table.insertRow();
+                    for (key in element) {
+                    let cell = row.insertCell();
+                    let txt = document.createTextNode(element[key]);
+                    cell.appendChild(txt);
+                    }
+                }
+            }
+
+            function renderHand() {
+                let table = document.getElementById("tableHand");
+                reGenerateHandTable(table, arrHand);
+                /*generateTableHead(table, arrHand[0]);*/
+            }
+
+            function discardCard(e) {
+                var element = e.target;
+                var elementId = element.id;
+                var row = (element.closest("tr")).rowIndex - 1;
+                arrHand.splice(row,1);
+                renderHand();
+            }
+
+            function populateInvestment(id) {
+                var dropdown = document.getElementById(id);
+                var selection = dropdown.value;
+                var cardText = arrInvestments[selection].CardText;
+                var investmentTextbox = document.getElementById(id + "Textbox");
+                investmentTextbox.innerHTML = cardText;
+            }
+
+            function populateAsset(id) {
+                var dropdown = document.getElementById(id);
+                var selection = dropdown.value;
+                var cardText = arrAssets[selection].CardText;
+                var assetTextbox = document.getElementById(id + "Textbox");
+                assetTextbox.innerHTML = cardText;
+            }
+
+            function populateEa(id) {
+                var dropdown = document.getElementById(id);
+                var selection = dropdown.value;
+
+                var cardName = arrEmergencyActions[selection].Name;
+                var eaNamebox = document.getElementById(id + "Namebox");
+                eaNamebox.innerHTML = cardName;
+
+                var cardText = arrEmergencyActions[selection].CardText;
+                var eaTextbox = document.getElementById(id + "Textbox");
+                eaTextbox.innerHTML = cardText;
+            }
+
+        </script>
+
+        <table class="outer">
+            <tr>
+                <td colspan="2" style = "text-align: center;">
+                    <img src="../static/images/NewAngelesLogo.jpg" height="100px"/>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td style = "text-align: center;">
+                    <img src="../static/images/weyland.jpg" height="50px"/>
+                </td>
+                <th class="outer">When an outage token is removed<br>from a district, gain 2 capital</th>
+            </tr>
+        </table>
+
+        <br>
+
+        <table class="outer">
+            <tr>
+                <th colspan="2" style = "text-align: center;">Card Draw</th>
+            </tr>
+            <tr>
+                <th class="outer">5-6 Players</th>
+                <th class="outer">4 Players</th>
+            </tr>
+            <tr>
+                <td>2 BioTech<br>1 Labor</td>
+                <td>2 BioTech<br>1 General</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table class="outer">
+
+            <tr>
+                <th>First Investment</th>
+                <td>
+                    <select id="investmentFirst" onchange="populateInvestment('investmentFirst')">
+                        <option value="0" selected="selected">-</option>
+                        <option value="1">Healthcare Initiative</option>
+                        <option value="2">Power Siphoning</option>
+                        <option value="3">Union Agreement</option>
+                        <option value="4">Laundering Scheme</option>
+                        <option value="5">Militarized Police</option>
+                        <option value="6">Short Sale</option>
+                        <option value="7">Retail Sector</option>
+                        <option value="8">Energy Sector</option>
+                        <option value="9">Banking Sector</option>
+                        <option value="10">Technology Sector</option>
+                        <option value="11">Entertainment Sector</option>
+                        <option value="12">Populist Dismissal</option>
+                    </select>
+                </td>
+                <td class="investmentText" id="investmentFirstTextbox"></td>
+            </tr>
+            <tr>
+                <th>Second Investment</th>
+                <td>
+                    <select id="investmentSecond" onchange="populateInvestment('investmentSecond')">
+                        <option value="0" selected="selected">-</option>
+                        <option value="1">Healthcare Initiative</option>
+                        <option value="2">Power Siphoning</option>
+                        <option value="3">Union Agreement</option>
+                        <option value="4">Laundering Scheme</option>
+                        <option value="5">Militarized Police</option>
+                        <option value="6">Short Sale</option>
+                        <option value="7">Retail Sector</option>
+                        <option value="8">Energy Sector</option>
+                        <option value="9">Banking Sector</option>
+                        <option value="10">Technology Sector</option>
+                        <option value="11">Entertainment Sector</option>
+                        <option value="12">Populist Dismissal</option>
+                    </select>
+                </td>
+                <td class="investmentText" id="investmentSecondTextbox"></td>
+            </tr>
+            <tr>
+                <th>Third Investment</th>
+                <td>
+                    <select id="investmentThird" onchange="populateInvestment('investmentThird')">
+                        <option value="0" selected="selected">-</option>
+                        <option value="1">Healthcare Initiative</option>
+                        <option value="2">Power Siphoning</option>
+                        <option value="3">Union Agreement</option>
+                        <option value="4">Laundering Scheme</option>
+                        <option value="5">Militarized Police</option>
+                        <option value="6">Short Sale</option>
+                        <option value="7">Retail Sector</option>
+                        <option value="8">Energy Sector</option>
+                        <option value="9">Banking Sector</option>
+                        <option value="10">Technology Sector</option>
+                        <option value="11">Entertainment Sector</option>
+                        <option value="12">Populist Dismissal</option>
+                    </select>
+                </td>
+                <td class="investmentText" id="investmentThirdTextbox"></td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table class="outer">
+            <tr class="header">
+                <th style = "text-align: center;">Emergency Action Cards</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <table id="tableEmergencyActions">
+                        <tr>
+                            <th>Faction</th>
+                            <th>Name</th>
+                            <th>Text</th>
+                            <th>Exhausted</th>
+                            <th>Owned</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="ea1" onchange="populateEa('ea1')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">GlobalSec</option>
+                                    <option value="2">HB</option>
+                                    <option value="3">Jinteki</option>
+                                    <option value="4">Melange</option>
+                                    <option value="5">NBN</option>
+                                    <option value="6">Weyland</option>
+                                </select>
+                            </td>
+                            <td class="eaText" id="ea1Namebox"></td>
+                            <td class="eaText" id="ea1Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="ea2" onchange="populateEa('ea2')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">GlobalSec</option>
+                                    <option value="2">HB</option>
+                                    <option value="3">Jinteki</option>
+                                    <option value="4">Melange</option>
+                                    <option value="5">NBN</option>
+                                    <option value="6">Weyland</option>
+                                </select>
+                            </td>
+                            <td class="eaText" id="ea2Namebox"></td>
+                            <td class="eaText" id="ea2Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="ea3" onchange="populateEa('ea3')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">GlobalSec</option>
+                                    <option value="2">HB</option>
+                                    <option value="3">Jinteki</option>
+                                    <option value="4">Melange</option>
+                                    <option value="5">NBN</option>
+                                    <option value="6">Weyland</option>
+                                </select>
+                            </td>
+                            <td class="eaText" id="ea3Namebox"></td>
+                            <td class="eaText" id="ea3Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+        <table class="outer">
+            <tr>
+                <th style = "text-align: center;">Draw Cards</th>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="drawBiotech()">Biotech</button>
+                    <button onclick="drawLabor()">Labor</button>
+                    <button onclick="drawConstruction()">Construction</button>
+                    <button onclick="drawMedia()">Media</button>
+                    <button onclick="drawSecurity()">Security</button>
+                </td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <table class="outer">
+            <tr class="header">
+                <th class = "outer50">Hand</th>
+                <th class = "outer50">Assets</th>
+            </tr>
+            <tr>
+                <td class="outer50">
+                    <table class="inner" id="tableHand">
+                        <tr>
+                            <th class="inner">Type</th>
+                            <th class="inner">Card</th>
+                            <th class="inner">Text</th>
+                            <th class="inner">Play</th>
+                        </tr>
+                    </table>
+                </td>
+                <td class="outer50">
+                    <table class="inner" id="tableAssets">
+                        <tr>
+                            <th class="inner">Asset</th>
+                            <th class="inner">Text</th>
+                            <th class="inner">Exhausted</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset1" onchange="populateAsset('asset1')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset1Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset2" onchange="populateAsset('asset2')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset2Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset3" onchange="populateAsset('asset3')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset3Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset4" onchange="populateAsset('asset4')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset4Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset5" onchange="populateAsset('asset5')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset5Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset6" onchange="populateAsset('asset6')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset6Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset7" onchange="populateAsset('asset7')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset7Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset8" onchange="populateAsset('asset8')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset8Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset9" onchange="populateAsset('asset9')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset9Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset10" onchange="populateAsset('asset10')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset10Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset11" onchange="populateAsset('asset11')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset11Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="asset12" onchange="populateAsset('asset12')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Aaron Marron</option>
+                                    <option value="2">Alex Westlund</option>
+                                    <option value="3">Bernice Mai</option>
+                                    <option value="4">Braintrust</option>
+                                    <option value="5">Bryan Stinson</option>
+                                    <option value="6">Caprice Nisei</option>
+                                    <option value="7">Chief Gorman</option>
+                                    <option value="8">Coach Walden</option>
+                                    <option value="9">Eiko</option>
+                                    <option value="10">Elizabeth Mills</option>
+                                    <option value="11">Floyd 2X3A7C</option>
+                                    <option value="12">Fumiko Yamamori</option>
+                                    <option value="13">Gurren Imaishi</option>
+                                    <option value="14">Hernando Cortez</option>
+                                    <option value="15">Isable McGuire</option>
+                                    <option value="16">Jackson Howard</option>
+                                    <option value="17">Lily Lockwell</option>
+                                    <option value="18">Locust Company</option>
+                                    <option value="19">Marco Cubrero</option>
+                                    <option value="20">Mark Yale</option>
+                                    <option value="21">Midori</option>
+                                    <option value="22">Monica Singh</option>
+                                    <option value="23">Mr. Li</option>
+                                    <option value="24">"Mr. White"</option>
+                                    <option value="25">Naoko Watanabe</option>
+                                    <option value="26">Rachel Beckmann</option>
+                                    <option value="27">Saul Eustecio</option>
+                                    <option value="28">Sunny LeBeau</option>
+                                    <option value="29">Susan Chen</option>
+                                    <option value="30">Tanaka</option>
+                                    <option value="31">The Fall Guy</option>
+                                    <option value="32">Thomas Haas</option>
+                                    <option value="33">Toshiyuki Sakai</option>
+                                    <option value="34">Wong Ya Ching</option>
+                                </select>
+                            </td>
+                            <td class="assetText" id="asset12Textbox"></td>
+                            <td class="checkbox"><input type="checkbox"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
