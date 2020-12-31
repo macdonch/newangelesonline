@@ -1,0 +1,1990 @@
+<html>
+    <head>
+        <style type = "text/css">
+            table {
+                /*background-color: black;
+                background-image: url(image/bg.jpg);
+                */
+                margin-left:auto;
+                margin-right:auto;
+            }
+
+            td {
+               /* border: 1px solid black;*/
+                text-align: center;
+            }
+
+            td img{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            td.prod {
+               /* border: 1px solid black;*/
+                font-size: 20px;
+                text-align: left;
+
+            }
+
+            td.meeple {
+               /* border: 1px solid black;*/
+                text-align: center;
+            }
+
+            table.region1 {
+                width: 255px;
+                height: 255px;
+                background: url("image/1a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region2 {
+                width: 255px;
+                height: 255px;
+                background: url("image/2a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region3 {
+                width: 255px;
+                height: 255px;
+                background: url("image/3a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region4 {
+                width: 255px;
+                height: 255px;
+                background: url("image/4a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region5 {
+                width: 255px;
+                height: 255px;
+                background: url("image/5a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region6 {
+                width: 255px;
+                height: 255px;
+                background: url("image/6a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region7 {
+                width: 255px;
+                height: 255px;
+                background: url("image/7a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region8 {
+                width: 255px;
+                height: 255px;
+                background: url("image/8a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region9 {
+                width: 255px;
+                height: 255px;
+                background: url("image/9a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+            table.region10 {
+                width: 255px;
+                height: 255px;
+                background: url("image/10a.png");
+                background-repeat: no-repeat;
+                background-size: 255px 255px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <script>
+
+            var arrDemands = [
+                {name: "-",
+                energy: "-",
+                consumables: "-",
+                tech: "-",
+                entertainment: "-",
+                credits: "-",
+                failResult: "-"
+            },
+               {name: "Hosting World's Cup",
+                energy: "0",
+                consumables: "1",
+                tech: "3",
+                entertainment: "4",
+                credits: "2",
+                failResult: "Increase threat by 5."
+            },
+               {
+                name: "Increased Martian Violence",
+                energy: "1",
+                consumables: "2",
+                tech: "0",
+                entertainment: "2",
+                credits: "6",
+                failResult: "Increase threat by 6."
+            },
+               {
+                name: "Network Disruption",
+                energy: "0",
+                consumables: "0",
+                tech: "4",
+                entertainment: "4",
+                credits: "3",
+                failResult: "Increase threat by 7."
+            },
+               {
+                name: "Power Grid Overload",
+                energy: "2",
+                consumables: "0",
+                tech: "1",
+                entertainment: "2",
+                credits: "2",
+                failResult: "Increase threat by 6."
+            },
+               {
+                name: "Recreational Drug Ban",
+                energy: "0",
+                consumables: "1",
+                tech: "0",
+                entertainment: "6",
+                credits: "6",
+                failResult: "Increase threat by 7."
+            },
+                   {
+                name: "Refugee Influx",
+                energy: "0",
+                consumables: "3",
+                tech: "1",
+                entertainment: "3",
+                credits: "2",
+                failResult: "Increase threat by 5."
+            },
+               {
+                name: "Retail Shortage",
+                energy: "1",
+                consumables: "1",
+                tech: "0",
+                entertainment: "5",
+                credits: "1",
+                failResult: "Increase threat by 7."
+            },
+               {
+                name: "Space Elevator Malfunction",
+                energy: "1",
+                consumables: "0",
+                tech: "2",
+                entertainment: "2",
+                credits: "6",
+                failResult: "Increase threat by 6."
+            },
+                   {
+                name: "Tourism Spike",
+                energy: "2",
+                consumables: "0",
+                tech: "0",
+                entertainment: "5",
+                credits: "5",
+                failResult: "Increase threat by 5."
+            }
+            ];
+
+            function buttonClickAndroid1() {
+                if (document.getElementById('android1').value == 0){
+                    document.getElementById('android1').src = "image/android.png";
+                    document.getElementById('android1').value = 1;
+                } else if (document.getElementById('android1').value == 1) {
+                    document.getElementById('android1').src = "image/noAndroid.png";
+                    document.getElementById('android1').value = 0;
+                }
+            }
+
+            function buttonClickUnrest1() {
+                if (document.getElementById('unrest1').value == 0){
+                    document.getElementById('unrest1').src = "image/protest.png";
+                    document.getElementById('unrest1').value = 1;
+                } else if (document.getElementById('unrest1').value == 1) {
+                    document.getElementById('unrest1').src = "image/strike.png";
+                    document.getElementById('unrest1').value = 2;
+                } else if (document.getElementById('unrest1').value == 2) {
+                    document.getElementById('unrest1').src = "image/outage.png";
+                    document.getElementById('unrest1').value = 3;
+                } else if (document.getElementById('unrest1').value == 3) {
+                    document.getElementById('unrest1').src = "image/noUnrest.png";
+                    document.getElementById('unrest1').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment1() {
+                if (document.getElementById('development1').value == 0){
+                    document.getElementById('development1').src = "image/development.png";
+                    document.getElementById('development1').value = 1;
+                } else if (document.getElementById('development1').value == 1) {
+                    document.getElementById('development1').src = "image/noDevelopment.png";
+                    document.getElementById('development1').value = 0;
+                }
+            }
+
+            function buttonClickIllness1() {
+                if (document.getElementById('illness1').value == 0){
+                    document.getElementById('illness1').src = "image/illness.png";
+                    document.getElementById('illness1').value = 1;
+                } else if (document.getElementById('illness1').value == 1) {
+                    document.getElementById('illness1').src = "image/noIllness.png";
+                    document.getElementById('illness1').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst1() {
+                if (document.getElementById('humanFirst1').value == 0) {
+                    document.getElementById('humanFirst1').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst1').value = 1;
+                } else if (document.getElementById('humanFirst1').value == 1) {
+                    document.getElementById('humanFirst1').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst1').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime1() {
+                if (document.getElementById('orgCrime1').value == 0) {
+                    document.getElementById('orgCrime1').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime1').value = 1;
+                } else if (document.getElementById('orgCrime1').value == 1) {
+                    document.getElementById('orgCrime1').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime1').value = 0;
+                }
+            }
+
+            function buttonClickPriSec1() {
+                if (document.getElementById('priSec1').value == 0) {
+                    document.getElementById('priSec1').src = "image/priSec.png";
+                    document.getElementById('priSec1').value = 1;
+                    document.getElementById('orgCrime1').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime1').value = 0;
+                    document.getElementById('humanFirst1').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst1').value = 0;
+                } else if (document.getElementById('priSec1').value == 1) {
+                    document.getElementById('priSec1').src = "image/noPriSec.png";
+                    document.getElementById('priSec1').value = 0;
+                }
+            }
+
+            function buttonClickAndroid2() {
+                if (document.getElementById('android2').value == 0){
+                    document.getElementById('android2').src = "image/android.png";
+                    document.getElementById('android2').value = 1;
+                } else if (document.getElementById('android2').value == 1) {
+                    document.getElementById('android2').src = "image/noAndroid.png";
+                    document.getElementById('android2').value = 0;
+                }
+            }
+
+            function buttonClickUnrest2() {
+                if (document.getElementById('unrest2').value == 0){
+                    document.getElementById('unrest2').src = "image/protest.png";
+                    document.getElementById('unrest2').value = 1;
+                } else if (document.getElementById('unrest2').value == 1) {
+                    document.getElementById('unrest2').src = "image/strike.png";
+                    document.getElementById('unrest2').value = 2;
+                } else if (document.getElementById('unrest2').value == 2) {
+                    document.getElementById('unrest2').src = "image/outage.png";
+                    document.getElementById('unrest2').value = 3;
+                } else if (document.getElementById('unrest2').value == 3) {
+                    document.getElementById('unrest2').src = "image/noUnrest.png";
+                    document.getElementById('unrest2').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment2() {
+                if (document.getElementById('development2').value == 0){
+                    document.getElementById('development2').src = "image/development.png";
+                    document.getElementById('development2').value = 1;
+                } else if (document.getElementById('development2').value == 1) {
+                    document.getElementById('development2').src = "image/noDevelopment.png";
+                    document.getElementById('development2').value = 0;
+                }
+            }
+
+            function buttonClickIllness2() {
+                if (document.getElementById('illness2').value == 0){
+                    document.getElementById('illness2').src = "image/illness.png";
+                    document.getElementById('illness2').value = 1;
+                } else if (document.getElementById('illness2').value == 1) {
+                    document.getElementById('illness2').src = "image/noIllness.png";
+                    document.getElementById('illness2').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst2() {
+                if (document.getElementById('humanFirst2').value == 0) {
+                    document.getElementById('humanFirst2').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst2').value = 1;
+                } else if (document.getElementById('humanFirst2').value == 1) {
+                    document.getElementById('humanFirst2').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst2').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime2() {
+                if (document.getElementById('orgCrime2').value == 0) {
+                    document.getElementById('orgCrime2').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime2').value = 1;
+                } else if (document.getElementById('orgCrime2').value == 1) {
+                    document.getElementById('orgCrime2').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime2').value = 0;
+                }
+            }
+
+            function buttonClickPriSec2() {
+                if (document.getElementById('priSec2').value == 0) {
+                    document.getElementById('priSec2').src = "image/priSec.png";
+                    document.getElementById('priSec2').value = 1;
+                    document.getElementById('orgCrime2').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime2').value = 0;
+                    document.getElementById('humanFirst2').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst2').value = 0;
+                } else if (document.getElementById('priSec2').value == 1) {
+                    document.getElementById('priSec2').src = "image/noPriSec.png";
+                    document.getElementById('priSec2').value = 0;
+                }
+            }
+
+            function buttonClickAndroid3() {
+                if (document.getElementById('android3').value == 0){
+                    document.getElementById('android3').src = "image/android.png";
+                    document.getElementById('android3').value = 1;
+                } else if (document.getElementById('android3').value == 1) {
+                    document.getElementById('android3').src = "image/noAndroid.png";
+                    document.getElementById('android3').value = 0;
+                }
+            }
+
+            function buttonClickUnrest3() {
+                if (document.getElementById('unrest3').value == 0){
+                    document.getElementById('unrest3').src = "image/protest.png";
+                    document.getElementById('unrest3').value = 1;
+                } else if (document.getElementById('unrest3').value == 1) {
+                    document.getElementById('unrest3').src = "image/strike.png";
+                    document.getElementById('unrest3').value = 2;
+                } else if (document.getElementById('unrest3').value == 2) {
+                    document.getElementById('unrest3').src = "image/outage.png";
+                    document.getElementById('unrest3').value = 3;
+                } else if (document.getElementById('unrest3').value == 3) {
+                    document.getElementById('unrest3').src = "image/noUnrest.png";
+                    document.getElementById('unrest3').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment3() {
+                if (document.getElementById('development3').value == 0){
+                    document.getElementById('development3').src = "image/development.png";
+                    document.getElementById('development3').value = 1;
+                } else if (document.getElementById('development3').value == 1) {
+                    document.getElementById('development3').src = "image/noDevelopment.png";
+                    document.getElementById('development3').value = 0;
+                }
+            }
+
+            function buttonClickIllness3() {
+                if (document.getElementById('illness3').value == 0){
+                    document.getElementById('illness3').src = "image/illness.png";
+                    document.getElementById('illness3').value = 1;
+                } else if (document.getElementById('illness3').value == 1) {
+                    document.getElementById('illness3').src = "image/noIllness.png";
+                    document.getElementById('illness3').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst3() {
+                if (document.getElementById('humanFirst3').value == 0) {
+                    document.getElementById('humanFirst3').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst3').value = 1;
+                } else if (document.getElementById('humanFirst3').value == 1) {
+                    document.getElementById('humanFirst3').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst3').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime3() {
+                if (document.getElementById('orgCrime3').value == 0) {
+                    document.getElementById('orgCrime3').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime3').value = 1;
+                } else if (document.getElementById('orgCrime3').value == 1) {
+                    document.getElementById('orgCrime3').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime3').value = 0;
+                }
+            }
+
+            function buttonClickPriSec3() {
+                if (document.getElementById('priSec3').value == 0) {
+                    document.getElementById('priSec3').src = "image/priSec.png";
+                    document.getElementById('priSec3').value = 1;
+                    document.getElementById('orgCrime3').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime3').value = 0;
+                    document.getElementById('humanFirst3').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst3').value = 0;
+                } else if (document.getElementById('priSec3').value == 1) {
+                    document.getElementById('priSec3').src = "image/noPriSec.png";
+                    document.getElementById('priSec3').value = 0;
+                }
+            }
+
+            function buttonClickAndroid4() {
+                if (document.getElementById('android4').value == 0){
+                    document.getElementById('android4').src = "image/android.png";
+                    document.getElementById('android4').value = 1;
+                } else if (document.getElementById('android4').value == 1) {
+                    document.getElementById('android4').src = "image/noAndroid.png";
+                    document.getElementById('android4').value = 0;
+                }
+            }
+
+            function buttonClickUnrest4() {
+                if (document.getElementById('unrest4').value == 0){
+                    document.getElementById('unrest4').src = "image/protest.png";
+                    document.getElementById('unrest4').value = 1;
+                } else if (document.getElementById('unrest4').value == 1) {
+                    document.getElementById('unrest4').src = "image/strike.png";
+                    document.getElementById('unrest4').value = 2;
+                } else if (document.getElementById('unrest4').value == 2) {
+                    document.getElementById('unrest4').src = "image/outage.png";
+                    document.getElementById('unrest4').value = 3;
+                } else if (document.getElementById('unrest4').value == 3) {
+                    document.getElementById('unrest4').src = "image/noUnrest.png";
+                    document.getElementById('unrest4').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment4() {
+                if (document.getElementById('development4').value == 0){
+                    document.getElementById('development4').src = "image/development.png";
+                    document.getElementById('development4').value = 1;
+                } else if (document.getElementById('development4').value == 1) {
+                    document.getElementById('development4').src = "image/noDevelopment.png";
+                    document.getElementById('development4').value = 0;
+                }
+            }
+
+            function buttonClickIllness4() {
+                if (document.getElementById('illness4').value == 0){
+                    document.getElementById('illness4').src = "image/illness.png";
+                    document.getElementById('illness4').value = 1;
+                } else if (document.getElementById('illness4').value == 1) {
+                    document.getElementById('illness4').src = "image/noIllness.png";
+                    document.getElementById('illness4').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst4() {
+                if (document.getElementById('humanFirst4').value == 0) {
+                    document.getElementById('humanFirst4').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst4').value = 1;
+                } else if (document.getElementById('humanFirst4').value == 1) {
+                    document.getElementById('humanFirst4').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst4').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime4() {
+                if (document.getElementById('orgCrime4').value == 0) {
+                    document.getElementById('orgCrime4').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime4').value = 1;
+                } else if (document.getElementById('orgCrime4').value == 1) {
+                    document.getElementById('orgCrime4').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime4').value = 0;
+                }
+            }
+
+            function buttonClickPriSec4() {
+                if (document.getElementById('priSec4').value == 0) {
+                    document.getElementById('priSec4').src = "image/priSec.png";
+                    document.getElementById('priSec4').value = 1;
+                    document.getElementById('orgCrime4').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime4').value = 0;
+                    document.getElementById('humanFirst4').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst4').value = 0;
+                } else if (document.getElementById('priSec4').value == 1) {
+                    document.getElementById('priSec4').src = "image/noPriSec.png";
+                    document.getElementById('priSec4').value = 0;
+                }
+            }
+
+            function buttonClickAndroid5() {
+                if (document.getElementById('android5').value == 0){
+                    document.getElementById('android5').src = "image/android.png";
+                    document.getElementById('android5').value = 1;
+                } else if (document.getElementById('android5').value == 1) {
+                    document.getElementById('android5').src = "image/noAndroid.png";
+                    document.getElementById('android5').value = 0;
+                }
+            }
+
+            function buttonClickUnrest5() {
+                if (document.getElementById('unrest5').value == 0){
+                    document.getElementById('unrest5').src = "image/protest.png";
+                    document.getElementById('unrest5').value = 1;
+                } else if (document.getElementById('unrest5').value == 1) {
+                    document.getElementById('unrest5').src = "image/strike.png";
+                    document.getElementById('unrest5').value = 2;
+                } else if (document.getElementById('unrest5').value == 2) {
+                    document.getElementById('unrest5').src = "image/outage.png";
+                    document.getElementById('unrest5').value = 3;
+                } else if (document.getElementById('unrest5').value == 3) {
+                    document.getElementById('unrest5').src = "image/noUnrest.png";
+                    document.getElementById('unrest5').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment5() {
+                if (document.getElementById('development5').value == 0){
+                    document.getElementById('development5').src = "image/development.png";
+                    document.getElementById('development5').value = 1;
+                } else if (document.getElementById('development5').value == 1) {
+                    document.getElementById('development5').src = "image/noDevelopment.png";
+                    document.getElementById('development5').value = 0;
+                }
+            }
+
+            function buttonClickIllness5() {
+                if (document.getElementById('illness5').value == 0){
+                    document.getElementById('illness5').src = "image/illness.png";
+                    document.getElementById('illness5').value = 1;
+                } else if (document.getElementById('illness5').value == 1) {
+                    document.getElementById('illness5').src = "image/noIllness.png";
+                    document.getElementById('illness5').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst5() {
+                if (document.getElementById('humanFirst5').value == 0) {
+                    document.getElementById('humanFirst5').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst5').value = 1;
+                } else if (document.getElementById('humanFirst5').value == 1) {
+                    document.getElementById('humanFirst5').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst5').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime5() {
+                if (document.getElementById('orgCrime5').value == 0) {
+                    document.getElementById('orgCrime5').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime5').value = 1;
+                } else if (document.getElementById('orgCrime5').value == 1) {
+                    document.getElementById('orgCrime5').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime5').value = 0;
+                }
+            }
+
+            function buttonClickPriSec5() {
+                if (document.getElementById('priSec5').value == 0) {
+                    document.getElementById('priSec5').src = "image/priSec.png";
+                    document.getElementById('priSec5').value = 1;
+                    document.getElementById('orgCrime5').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime5').value = 0;
+                    document.getElementById('humanFirst5').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst5').value = 0;
+                } else if (document.getElementById('priSec5').value == 1) {
+                    document.getElementById('priSec5').src = "image/noPriSec.png";
+                    document.getElementById('priSec5').value = 0;
+                }
+            }
+
+            function buttonClickAndroid6() {
+                if (document.getElementById('android6').value == 0){
+                    document.getElementById('android6').src = "image/android.png";
+                    document.getElementById('android6').value = 1;
+                } else if (document.getElementById('android6').value == 1) {
+                    document.getElementById('android6').src = "image/noAndroid.png";
+                    document.getElementById('android6').value = 0;
+                }
+            }
+
+            function buttonClickUnrest6() {
+                if (document.getElementById('unrest6').value == 0){
+                    document.getElementById('unrest6').src = "image/protest.png";
+                    document.getElementById('unrest6').value = 1;
+                } else if (document.getElementById('unrest6').value == 1) {
+                    document.getElementById('unrest6').src = "image/strike.png";
+                    document.getElementById('unrest6').value = 2;
+                } else if (document.getElementById('unrest6').value == 2) {
+                    document.getElementById('unrest6').src = "image/outage.png";
+                    document.getElementById('unrest6').value = 3;
+                } else if (document.getElementById('unrest6').value == 3) {
+                    document.getElementById('unrest6').src = "image/noUnrest.png";
+                    document.getElementById('unrest6').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment6() {
+                if (document.getElementById('development6').value == 0){
+                    document.getElementById('development6').src = "image/development.png";
+                    document.getElementById('development6').value = 1;
+                } else if (document.getElementById('development6').value == 1) {
+                    document.getElementById('development6').src = "image/noDevelopment.png";
+                    document.getElementById('development6').value = 0;
+                }
+            }
+
+            function buttonClickIllness6() {
+                if (document.getElementById('illness6').value == 0){
+                    document.getElementById('illness6').src = "image/illness.png";
+                    document.getElementById('illness6').value = 1;
+                } else if (document.getElementById('illness6').value == 1) {
+                    document.getElementById('illness6').src = "image/noIllness.png";
+                    document.getElementById('illness6').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst6() {
+                if (document.getElementById('humanFirst6').value == 0) {
+                    document.getElementById('humanFirst6').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst6').value = 1;
+                } else if (document.getElementById('humanFirst6').value == 1) {
+                    document.getElementById('humanFirst6').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst6').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime6() {
+                if (document.getElementById('orgCrime6').value == 0) {
+                    document.getElementById('orgCrime6').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime6').value = 1;
+                } else if (document.getElementById('orgCrime6').value == 1) {
+                    document.getElementById('orgCrime6').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime6').value = 0;
+                }
+            }
+
+            function buttonClickPriSec6() {
+                if (document.getElementById('priSec6').value == 0) {
+                    document.getElementById('priSec6').src = "image/priSec.png";
+                    document.getElementById('priSec6').value = 1;
+                    document.getElementById('orgCrime6').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime6').value = 0;
+                    document.getElementById('humanFirst6').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst6').value = 0;
+                } else if (document.getElementById('priSec6').value == 1) {
+                    document.getElementById('priSec6').src = "image/noPriSec.png";
+                    document.getElementById('priSec6').value = 0;
+                }
+            }
+
+            function buttonClickAndroid7() {
+                if (document.getElementById('android7').value == 0){
+                    document.getElementById('android7').src = "image/android.png";
+                    document.getElementById('android7').value = 1;
+                } else if (document.getElementById('android7').value == 1) {
+                    document.getElementById('android7').src = "image/noAndroid.png";
+                    document.getElementById('android7').value = 0;
+                }
+            }
+
+            function buttonClickUnrest7() {
+                if (document.getElementById('unrest7').value == 0){
+                    document.getElementById('unrest7').src = "image/protest.png";
+                    document.getElementById('unrest7').value = 1;
+                } else if (document.getElementById('unrest7').value == 1) {
+                    document.getElementById('unrest7').src = "image/strike.png";
+                    document.getElementById('unrest7').value = 2;
+                } else if (document.getElementById('unrest7').value == 2) {
+                    document.getElementById('unrest7').src = "image/outage.png";
+                    document.getElementById('unrest7').value = 3;
+                } else if (document.getElementById('unrest7').value == 3) {
+                    document.getElementById('unrest7').src = "image/noUnrest.png";
+                    document.getElementById('unrest7').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment7() {
+                if (document.getElementById('development7').value == 0){
+                    document.getElementById('development7').src = "image/development.png";
+                    document.getElementById('development7').value = 1;
+                } else if (document.getElementById('development7').value == 1) {
+                    document.getElementById('development7').src = "image/noDevelopment.png";
+                    document.getElementById('development7').value = 0;
+                }
+            }
+
+            function buttonClickIllness7() {
+                if (document.getElementById('illness7').value == 0){
+                    document.getElementById('illness7').src = "image/illness.png";
+                    document.getElementById('illness7').value = 1;
+                } else if (document.getElementById('illness7').value == 1) {
+                    document.getElementById('illness7').src = "image/noIllness.png";
+                    document.getElementById('illness7').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst7() {
+                if (document.getElementById('humanFirst7').value == 0) {
+                    document.getElementById('humanFirst7').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst7').value = 1;
+                } else if (document.getElementById('humanFirst7').value == 1) {
+                    document.getElementById('humanFirst7').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst7').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime7() {
+                if (document.getElementById('orgCrime7').value == 0) {
+                    document.getElementById('orgCrime7').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime7').value = 1;
+                } else if (document.getElementById('orgCrime7').value == 1) {
+                    document.getElementById('orgCrime7').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime7').value = 0;
+                }
+            }
+
+            function buttonClickPriSec7() {
+                if (document.getElementById('priSec7').value == 0) {
+                    document.getElementById('priSec7').src = "image/priSec.png";
+                    document.getElementById('priSec7').value = 1;
+                    document.getElementById('orgCrime7').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime7').value = 0;
+                    document.getElementById('humanFirst7').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst7').value = 0;
+                } else if (document.getElementById('priSec7').value == 1) {
+                    document.getElementById('priSec7').src = "image/noPriSec.png";
+                    document.getElementById('priSec7').value = 0;
+                }
+            }
+
+            function buttonClickAndroid8() {
+                if (document.getElementById('android8').value == 0){
+                    document.getElementById('android8').src = "image/android.png";
+                    document.getElementById('android8').value = 1;
+                } else if (document.getElementById('android8').value == 1) {
+                    document.getElementById('android8').src = "image/noAndroid.png";
+                    document.getElementById('android8').value = 0;
+                }
+            }
+
+            function buttonClickUnrest8() {
+                if (document.getElementById('unrest8').value == 0){
+                    document.getElementById('unrest8').src = "image/protest.png";
+                    document.getElementById('unrest8').value = 1;
+                } else if (document.getElementById('unrest8').value == 1) {
+                    document.getElementById('unrest8').src = "image/strike.png";
+                    document.getElementById('unrest8').value = 2;
+                } else if (document.getElementById('unrest8').value == 2) {
+                    document.getElementById('unrest8').src = "image/outage.png";
+                    document.getElementById('unrest8').value = 3;
+                } else if (document.getElementById('unrest8').value == 3) {
+                    document.getElementById('unrest8').src = "image/noUnrest.png";
+                    document.getElementById('unrest8').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment8() {
+                if (document.getElementById('development8').value == 0){
+                    document.getElementById('development8').src = "image/development.png";
+                    document.getElementById('development8').value = 1;
+                } else if (document.getElementById('development8').value == 1) {
+                    document.getElementById('development8').src = "image/noDevelopment.png";
+                    document.getElementById('development8').value = 0;
+                }
+            }
+
+            function buttonClickIllness8() {
+                if (document.getElementById('illness8').value == 0){
+                    document.getElementById('illness8').src = "image/illness.png";
+                    document.getElementById('illness8').value = 1;
+                } else if (document.getElementById('illness8').value == 1) {
+                    document.getElementById('illness8').src = "image/noIllness.png";
+                    document.getElementById('illness8').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst8() {
+                if (document.getElementById('humanFirst8').value == 0) {
+                    document.getElementById('humanFirst8').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst8').value = 1;
+                } else if (document.getElementById('humanFirst8').value == 1) {
+                    document.getElementById('humanFirst8').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst8').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime8() {
+                if (document.getElementById('orgCrime8').value == 0) {
+                    document.getElementById('orgCrime8').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime8').value = 1;
+                } else if (document.getElementById('orgCrime8').value == 1) {
+                    document.getElementById('orgCrime8').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime8').value = 0;
+                }
+            }
+
+            function buttonClickPriSec8() {
+                if (document.getElementById('priSec8').value == 0) {
+                    document.getElementById('priSec8').src = "image/priSec.png";
+                    document.getElementById('priSec8').value = 1;
+                    document.getElementById('orgCrime8').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime8').value = 0;
+                    document.getElementById('humanFirst8').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst8').value = 0;
+                } else if (document.getElementById('priSec8').value == 1) {
+                    document.getElementById('priSec8').src = "image/noPriSec.png";
+                    document.getElementById('priSec8').value = 0;
+                }
+            }
+
+            function buttonClickAndroid9() {
+                if (document.getElementById('android9').value == 0){
+                    document.getElementById('android9').src = "image/android.png";
+                    document.getElementById('android9').value = 1;
+                } else if (document.getElementById('android9').value == 1) {
+                    document.getElementById('android9').src = "image/noAndroid.png";
+                    document.getElementById('android9').value = 0;
+                }
+            }
+
+            function buttonClickUnrest9() {
+                if (document.getElementById('unrest9').value == 0){
+                    document.getElementById('unrest9').src = "image/protest.png";
+                    document.getElementById('unrest9').value = 1;
+                } else if (document.getElementById('unrest9').value == 1) {
+                    document.getElementById('unrest9').src = "image/strike.png";
+                    document.getElementById('unrest9').value = 2;
+                } else if (document.getElementById('unrest9').value == 2) {
+                    document.getElementById('unrest9').src = "image/outage.png";
+                    document.getElementById('unrest9').value = 3;
+                } else if (document.getElementById('unrest9').value == 3) {
+                    document.getElementById('unrest9').src = "image/noUnrest.png";
+                    document.getElementById('unrest9').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment9() {
+                if (document.getElementById('development9').value == 0){
+                    document.getElementById('development9').src = "image/development.png";
+                    document.getElementById('development9').value = 1;
+                } else if (document.getElementById('development9').value == 1) {
+                    document.getElementById('development9').src = "image/noDevelopment.png";
+                    document.getElementById('development9').value = 0;
+                }
+            }
+
+            function buttonClickIllness9() {
+                if (document.getElementById('illness9').value == 0){
+                    document.getElementById('illness9').src = "image/illness.png";
+                    document.getElementById('illness9').value = 1;
+                } else if (document.getElementById('illness9').value == 1) {
+                    document.getElementById('illness9').src = "image/noIllness.png";
+                    document.getElementById('illness9').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst9() {
+                if (document.getElementById('humanFirst9').value == 0) {
+                    document.getElementById('humanFirst9').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst9').value = 1;
+                } else if (document.getElementById('humanFirst9').value == 1) {
+                    document.getElementById('humanFirst9').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst9').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime9() {
+                if (document.getElementById('orgCrime9').value == 0) {
+                    document.getElementById('orgCrime9').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime9').value = 1;
+                } else if (document.getElementById('orgCrime9').value == 1) {
+                    document.getElementById('orgCrime9').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime9').value = 0;
+                }
+            }
+
+            function buttonClickPriSec9() {
+                if (document.getElementById('priSec9').value == 0) {
+                    document.getElementById('priSec9').src = "image/priSec.png";
+                    document.getElementById('priSec9').value = 1;
+                    document.getElementById('orgCrime9').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime9').value = 0;
+                    document.getElementById('humanFirst9').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst9').value = 0;
+                } else if (document.getElementById('priSec9').value == 1) {
+                    document.getElementById('priSec9').src = "image/noPriSec.png";
+                    document.getElementById('priSec9').value = 0;
+                }
+            }
+
+            function buttonClickAndroid10() {
+                if (document.getElementById('android10').value == 0){
+                    document.getElementById('android10').src = "image/android.png";
+                    document.getElementById('android10').value = 1;
+                } else if (document.getElementById('android10').value == 1) {
+                    document.getElementById('android10').src = "image/noAndroid.png";
+                    document.getElementById('android10').value = 0;
+                }
+            }
+
+            function buttonClickUnrest10() {
+                if (document.getElementById('unrest10').value == 0){
+                    document.getElementById('unrest10').src = "image/protest.png";
+                    document.getElementById('unrest10').value = 1;
+                } else if (document.getElementById('unrest10').value == 1) {
+                    document.getElementById('unrest10').src = "image/strike.png";
+                    document.getElementById('unrest10').value = 2;
+                } else if (document.getElementById('unrest10').value == 2) {
+                    document.getElementById('unrest10').src = "image/outage.png";
+                    document.getElementById('unrest10').value = 3;
+                } else if (document.getElementById('unrest10').value == 3) {
+                    document.getElementById('unrest10').src = "image/noUnrest.png";
+                    document.getElementById('unrest10').value = 0;
+                }
+            }
+
+            function buttonClickDevelopment10() {
+                if (document.getElementById('development10').value == 0){
+                    document.getElementById('development10').src = "image/development.png";
+                    document.getElementById('development10').value = 1;
+                } else if (document.getElementById('development10').value == 1) {
+                    document.getElementById('development10').src = "image/noDevelopment.png";
+                    document.getElementById('development10').value = 0;
+                }
+            }
+
+            function buttonClickIllness10() {
+                if (document.getElementById('illness10').value == 0){
+                    document.getElementById('illness10').src = "image/illness.png";
+                    document.getElementById('illness10').value = 1;
+                } else if (document.getElementById('illness10').value == 1) {
+                    document.getElementById('illness10').src = "image/noIllness.png";
+                    document.getElementById('illness10').value = 0;
+                }
+            }
+
+            function buttonClickHumanFirst10() {
+                if (document.getElementById('humanFirst10').value == 0) {
+                    document.getElementById('humanFirst10').src = "image/humanFirst.png";
+                    document.getElementById('humanFirst10').value = 1;
+                } else if (document.getElementById('humanFirst10').value == 1) {
+                    document.getElementById('humanFirst10').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst10').value = 0;
+                }
+            }
+
+            function buttonClickOrgCrime10() {
+                if (document.getElementById('orgCrime10').value == 0) {
+                    document.getElementById('orgCrime10').src = "image/orgCrime.png";
+                    document.getElementById('orgCrime10').value = 1;
+                } else if (document.getElementById('orgCrime10').value == 1) {
+                    document.getElementById('orgCrime10').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime10').value = 0;
+                }
+            }
+
+            function buttonClickPriSec10() {
+                if (document.getElementById('priSec10').value == 0) {
+                    document.getElementById('priSec10').src = "image/priSec.png";
+                    document.getElementById('priSec10').value = 1;
+                    document.getElementById('orgCrime10').src = "image/noOrgCrime.png";
+                    document.getElementById('orgCrime10').value = 0;
+                    document.getElementById('humanFirst10').src = "image/noHumanFirst.png";
+                    document.getElementById('humanFirst10').value = 0;
+                } else if (document.getElementById('priSec10').value == 1) {
+                    document.getElementById('priSec10').src = "image/noPriSec.png";
+                    document.getElementById('priSec10').value = 0;
+                }
+            }
+
+            var player1Pts=10;
+            function player1Inc() {
+                document.getElementById('player1').value = ++player1Pts;
+            }
+
+            function player1Dec() {
+                document.getElementById('player1').value = --player1Pts;
+            }
+
+            var player2Pts=11;
+            function player2Inc() {
+                document.getElementById('player2').value = ++player2Pts;
+            }
+
+            function player2Dec() {
+                document.getElementById('player2').value = --player2Pts;
+            }
+
+            var player3Pts=12;
+            function player3Inc() {
+                document.getElementById('player3').value = ++player3Pts;
+            }
+
+            function player3Dec() {
+                document.getElementById('player3').value = --player3Pts;
+            }
+
+            var player4Pts=13;
+            function player4Inc() {
+                document.getElementById('player4').value = ++player4Pts;
+            }
+
+            function player4Dec() {
+                document.getElementById('player4').value = --player4Pts;
+            }
+
+            var player5Pts=14;
+            function player5Inc() {
+                document.getElementById('player5').value = ++player5Pts;
+            }
+
+            function player5Dec() {
+                document.getElementById('player5').value = --player5Pts;
+            }
+
+            var player6Pts=15;
+            function player6Inc() {
+                document.getElementById('player6').value = ++player6Pts;
+            }
+
+            function player6Dec() {
+                document.getElementById('player6').value = --player6Pts;
+            }
+
+            var threatPts=0;
+            function threatInc() {
+                document.getElementById('threat').value = ++threatPts;
+            }
+
+            function threatDec() {
+                document.getElementById('threat').value = --threatPts;
+            }
+
+            var roundNum=1;
+            function roundInc() {
+                document.getElementById('round').value = ++roundNum;
+            }
+
+            function roundDec() {
+                document.getElementById('round').value = --roundNum;
+            }
+
+            var energyVal=0;
+            function energyInc() {
+                document.getElementById('energyValue').value = ++energyVal;
+            }
+
+            function energyDec() {
+                document.getElementById('energyValue').value = --energyVal;
+            }
+
+            var consumablesVal=0;
+            function consumablesInc() {
+                document.getElementById('consumablesValue').value = ++consumablesVal;
+            }
+
+            function consumablesDec() {
+                document.getElementById('consumablesValue').value = --consumablesVal;
+            }
+
+            var techVal=0;
+            function techInc() {
+                document.getElementById('techValue').value = ++techVal;
+            }
+
+            function techDec() {
+                document.getElementById('techValue').value = --techVal;
+            }
+
+            var entertainmentVal=0;
+            function entertainmentInc() {
+                document.getElementById('entertainmentValue').value = ++entertainmentVal;
+            }
+
+            function entertainmentDec() {
+                document.getElementById('entertainmentValue').value = --entertainmentVal;
+            }
+
+            var creditsVal=0;
+            function creditsInc() {
+                document.getElementById('creditsValue').value = ++creditsVal;
+            }
+
+            function creditsDec() {
+                document.getElementById('creditsValue').value = --creditsVal;
+            }
+
+            var mainVal=0;
+            function mainInc() {
+                document.getElementById('mainVotes').value = ++mainVal;
+            }
+
+            function mainDec() {
+                document.getElementById('mainVotes').value = --mainVal;
+            }
+
+            var counterVal=0;
+            function counterInc() {
+                document.getElementById('counterVotes').value = ++counterVal;
+            }
+
+            function counterDec() {
+                document.getElementById('counterVotes').value = --counterVal;
+            }
+
+            function populateDemand(id) {
+                var dropdown = document.getElementById(id);
+                var selection = dropdown.value;
+                var demand = arrDemands[selection]
+                var energyTextbox = document.getElementById("energyTarget");
+                var consumablesTextbox = document.getElementById("consumablesTarget");
+                var techTextbox = document.getElementById("techTarget");
+                var entertainmentTextbox = document.getElementById("entertainmentTarget");
+                var creditsTextbox = document.getElementById("creditsTarget");
+                var failResultTextbox = document.getElementById("failResult");
+                energyTextbox.innerHTML = demand.energy;
+                consumablesTextbox.innerHTML = demand.consumables;
+                techTextbox.innerHTML = demand.tech;
+                entertainmentTextbox.innerHTML = demand.entertainment;
+                creditsTextbox.innerHTML = demand.credits;
+                failResultTextbox.innerHTML = demand.failResult;
+            }
+
+        </script>
+
+        <table style="background-image: url(image/bg4a.png); background-repeat: no-repeat; background-position: center; background-color: rgb(27, 5, 78); padding-left: 30px; padding-right: 30px;">
+            <!-- row 0 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <td></td> <!-- col1 -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noAndroid.png" id="android8" height="50px" width="50px" onclick="buttonClickAndroid8()" value="0"></input></td>
+                <!-- col10 -->
+                <td rowspan="4">
+                    <table class="region8">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst8" height="50px" width="50px" onclick="buttonClickHumanFirst8()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime8" height="50px" width="50px" onclick="buttonClickOrgCrime8()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td class="meeple" colspan="2"><input type="image" src="image/noPriSec.png" id="priSec8" height="50px" width="50px" onclick="buttonClickPriSec8()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td rowspan="18">        </td><!-- col11 -->
+                <!-- col11 -->
+                <td rowspan=8>
+                    <table style="background-color: white;"">
+                        <tr>
+                            <th style="font-size:25px;">Player</th>
+                            <th style="font-size:25px;">Corp</th>
+                            <th style="font-size:25px;">Capital</th>
+                            <th style="font-size:25px;">+</th>
+                            <th style="font-size:25px;">-</th>
+                        </tr>
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 1"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option>GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player1" value="10"></input></td>
+                            <td><button style="font-size:25px;" onclick="player1Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player1Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 2"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option>GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player2" value="11"></input></td>
+                            <td><button style="font-size:25px;"  onclick="player2Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player2Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 3"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option>GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player3" value="12"></input></td>
+                            <td><button style="font-size:25px;"  onclick="player3Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player3Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 4"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option>GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player4" value="13"></input></td>
+                            <td><button style="font-size:25px;"  onclick="player4Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player4Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 5"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option>GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player5" value="14"></input></td>
+                            <td><button style="font-size:25px;"  onclick="player5Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player5Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td><input style="font-size:25px;" type="text" size="10" id="hb" value="player 6"></input></td>
+                            <td>
+                                <select style="font-size:25px;">
+                                    <option>HB</option>
+                                    <option>Jinteki</option>
+                                    <option>NBN</option>
+                                    <option>Weyland</option>
+                                    <option>Melange</option>
+                                    <option >GlobalSec</option>
+                                    <option selected="selected">-</option>
+                                </select>
+                            </td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="player6" value="15"></input></td>
+                            <td><button style="font-size:25px;"  onclick="player6Inc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="player6Dec()">-</button></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td style="font-size: 25px; color: red">THREAT</td>
+                            <td><input style="font-size:25px; color: red" type="text" size="5" id="threat" value="0"></input></td>
+                            <td><button style="font-size:25px;"  onclick="threatInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="threatDec()">-</button></td>
+                        </tr>
+
+                    </table>
+                    
+                </td>
+            </tr>
+
+            <!-- row 1 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <td></td> <!-- col1 -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest8" height="50px" width="50px" onclick="buttonClickUnrest8()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 2 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <td></td> <!-- col1 -->
+                <td></td> <!-- col2 -->
+                <!-- col3-->
+                <td><input type="image" src="image/noAndroid.png" id="android4" height="50px" width="50px" onclick="buttonClickAndroid4()" value="0"></input></td>
+                <!-- col4 -->
+                <td rowspan="4">
+                    <table class="region4">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst4" height="50px" width="50px" onclick="buttonClickHumanFirst4()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime4" height="50px" width="50px" onclick="buttonClickOrgCrime4()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec4" height="50px" width="50px" onclick="buttonClickPriSec4()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noAndroid.png" id="android7" height="50px" width="50px" onclick="buttonClickAndroid7()" value="0"></input></td>
+                <!-- col7 -->
+                <td rowspan="4">
+                    <table class="region7">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst7" height="50px" width="50px" onclick="buttonClickHumanFirst7()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime7" height="50px" width="50px" onclick="buttonClickOrgCrime7()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec7" height="50px" width="50px" onclick="buttonClickPriSec7()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development8" height="50px" width="50px" onclick="buttonClickDevelopment8()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 3 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <td></td> <!-- col1 -->
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest4" height="50px" width="50px" onclick="buttonClickUnrest4()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td class="prod"><img src="image/rightarrow.png" height=22 width=36 /></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest7" height="50px" width="50px" onclick="buttonClickUnrest7()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noIllness.png" id="illness8" height="50px" width="50px" onclick="buttonClickIllness8()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 4 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noAndroid.png" id="android3" height="50px" width="50px" onclick="buttonClickAndroid3()" value="0"></input></td>
+                <!-- col1 -->
+                <td rowspan="4">
+                    <table class="region3">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst3" height="50px" width="50px" onclick="buttonClickHumanFirst3()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime3" height="50px" width="50px" onclick="buttonClickOrgCrime3()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec3" height="50px" width="50px" onclick="buttonClickPriSec3()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development4" height="50px" width="50px" onclick="buttonClickDevelopment4()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development7" height="50px" width="50px" onclick="buttonClickDevelopment7()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <td></td> <!-- col8 -->
+                <td></td> <!-- col9 -->
+                <!-- col10 -->
+                <td class="prod"><img src="image/downarrow.png" height=36 width=22 /></td>
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 5 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest3" height="50px" width="50px" onclick="buttonClickUnrest3()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noIllness.png" id="illness4" height="50px" width="50px" onclick="buttonClickIllness4()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noIllness.png" id="illness7" height="50px" width="50px" onclick="buttonClickIllness7()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <td class="prod"><img src="image/rightarrow.png" height=22 width=36 /></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noAndroid.png" id="android9" height="50px" width="50px" onclick="buttonClickAndroid9()" value="0"></input></td>
+                <!-- col10 -->
+                <td rowspan="4">
+                    <table class="region9">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst9" height="50px" width="50px" onclick="buttonClickHumanFirst9()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime9" height="50px" width="50px" onclick="buttonClickOrgCrime9()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec9" height="50px" width="50px" onclick="buttonClickPriSec9()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 6 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development3" height="50px" width="50px" onclick="buttonClickDevelopment3()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest9" height="50px" width="50px" onclick="buttonClickUnrest9()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 7 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noIllness.png" id="illness3" height="50px" width="50px" onclick="buttonClickIllness3()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td><img src="image/rightarrow.png" height=22 width=36 /></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noAndroid.png" id="android5" height="50px" width="50px" onclick="buttonClickAndroid5()" value="0"></input></td>
+                <!-- col4 -->
+                <td rowspan="4">
+                    <table class="region5">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst5" height="50px" width="50px" onclick="buttonClickHumanFirst5()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime5" height="50px" width="50px" onclick="buttonClickOrgCrime5()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec5" height="50px" width="50px" onclick="buttonClickPriSec5()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noAndroid.png" id="android6" height="50px" width="50px" onclick="buttonClickAndroid6()" value="0"></input></td>
+                <!-- col7 -->
+                <td rowspan="4">
+                    <table class="region6">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst6" height="50px" width="50px" onclick="buttonClickHumanFirst6()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime6" height="50px" width="50px" onclick="buttonClickOrgCrime6()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec6" height="50px" width="50px" onclick="buttonClickPriSec6()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development9" height="50px" width="50px" onclick="buttonClickDevelopment9()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 8 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <td></td> <!-- col1 -->
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest5" height="50px" width="50px" onclick="buttonClickUnrest5()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td><img src="image/rightarrow.png" height=22 width=36 /></td> <!-- col2 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest6" height="50px" width="50px" onclick="buttonClickUnrest6()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <!-- col8 -->
+                <td><img src="image/rightarrow.png" height=22 width=36 /></td>
+                <!-- col9 -->
+                <td><input type="image" src="image/noIllness.png" id="illness9" height="50px" width="50px" onclick="buttonClickIllness9()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <td></td> <!-- col11 -->
+            </tr>
+
+            <!-- row 9 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noAndroid.png" id="android2" height="50px" width="50px" onclick="buttonClickAndroid2()" value="0"></input></td>
+                <!-- col1 -->
+                <td rowspan="4">
+                    <table class="region2">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst2" height="50px" width="50px" onclick="buttonClickHumanFirst2()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime2" height="50px" width="50px" onclick="buttonClickOrgCrime2()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec2" height="50px" width="50px" onclick="buttonClickPriSec2()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <!-- col2 -->
+                <td><img src="image/rightarrow.png" height=22 width=36 /></td>
+                <!-- col3 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development5" height="50px" width="50px" onclick="buttonClickDevelopment5()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development6" height="50px" width="50px" onclick="buttonClickDevelopment6()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <td></td> <!-- col8 -->
+                <td></td> <!-- col9 -->
+                <!-- col10 -->
+                <td class="prod"><img src="image/downarrow.png" height=36 width=22 /></td>
+                <!-- col11 -->
+                <td rowspan="5">
+                    <table style="background-color: white;">
+                        <tr>
+                            <th style="font-size:25px;">Demand</th>
+                            <th colspan="4">
+                                <select style="font-size:25px;" id="demandTitle" onchange="populateDemand('demandTitle')">
+                                    <option value="0" selected="selected">-</option>
+                                    <option value="1">Hosting World's Cup</option>
+                                    <option value="3">Increased Martion Violence</option>
+                                    <option value="4">Network Disruption</option>
+                                    <option value="5">Power Grid Overload</option>
+                                    <option value="5">Recreational Drug Ban</option>
+                                    <option value="6">Refugee Influx</option>
+                                    <option value="7">Retail Shortage</option>
+                                    <option value="8">Space Elevator Malfunction</option>
+                                    <option value="9">Tourism Spike</option>
+                                </select>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;">Resource</th>
+                            <th style="font-size:25px;">Target</th>
+                            <th style="font-size:25px;" >Value</th>
+                            <th style="font-size:25px;">+</th>
+                            <th style="font-size:25px;">-</th>
+                        </tr>
+                        <tr>
+                            <td><img src="image/energy.jpg" /></td>
+                            <td style="font-size:25px;" id="energyTarget"></td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="energyValue" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="energyInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="energyDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="image/consumables.jpg" /></td>
+                            <td style="font-size:25px;" id="consumablesTarget"></td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="consumablesValue" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="consumablesInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="consumablesDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="image/tech.jpg" /></td>
+                            <td style="font-size:25px;" id="techTarget"></td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="techValue" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="techInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="techDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="image/entertainment.jpg" /></td>
+                            <td style="font-size:25px;" id="entertainmentTarget"></td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="entertainmentValue" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="entertainmentInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="entertainmentDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <td><img src="image/credits.jpg" /></td>
+                            <td style="font-size:25px;" id="creditsTarget"></td>
+                            <td><input style="font-size:25px;" type="text" size="5" id="creditsValue" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="creditsInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="creditsDec()">-</button></td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size:25px; color: red;">FAIL RESULT</td>
+                            <td style="font-size:25px;" id="failResult"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <!-- row 10 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest2" height="50px" width="50px" onclick="buttonClickUnrest2()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td><input type="image" src="image/noIllness.png" id="illness5" height="50px" width="50px" onclick="buttonClickIllness5()" value="0"></input></td>
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td><input type="image" src="image/noIllness.png" id="illness6" height="50px" width="50px" onclick="buttonClickIllness6()" value="0"></input></td>
+                <!-- col7 spanned -->
+                <td class="prod"><img src="image/rightarrow.png" height=22 width=36 /></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noAndroid.png" id="android10" height="50px" width="50px" onclick="buttonClickAndroid10()" value="0"></input></td>
+                <!-- col10 -->
+                <td rowspan="4">
+                    <table class="region10">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst10" height="50px" width="50px" onclick="buttonClickHumanFirst10()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime10" height="50px" width="50px" onclick="buttonClickOrgCrime10()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec10" height="50px" width="50px" onclick="buttonClickPriSec10()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 11 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development2" height="50px" width="50px" onclick="buttonClickDevelopment2()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <!-- col3 -->
+                <td rowspan=4 colspan=2>
+                    <table style="background-color: white; text-align: left;">
+                        <tr>
+                            <th style="font-size:25px;">Round</th>
+                            <td style="text-align: right;"><input style="font-size:25px; text-align: right;" type="text" size="1" id="round" value="1"></input></td>
+                            <td><button style="font-size:25px;" onclick="roundInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="roundDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;">Assets</th>
+                            <td style="text-align: right;">
+                                <select style="font-size:25px;">
+                                    <option>Select...</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;">Next Event</th>
+                            <td style="text-align: right;">
+                                <select style="font-size:25px; text-align-last: right">
+                                    <option style="text-align: right;">Select...</option>
+                                    <option style="text-align: right;">Outage</option>
+                                    <option style="text-align: right;">Protest/Strike</option>
+                                    <option style="text-align: right;">Human First</option>
+                                    <option style="text-align: right;">Org Crime</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest10" height="50px" width="50px" onclick="buttonClickUnrest10()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 12 -->
+                <!-- col0 -->
+                <td><input type="image" src="image/noIllness.png" id="illness2" height="50px" width="50px" onclick="buttonClickIllness2()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <!-- col3 spanned -->
+                <!-- col4 spanned -->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development10" height="50px" width="50px" onclick="buttonClickDevelopment10()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 13 -->
+            <tr>
+                <td></td> <!-- col0 -->
+                <!-- col1 -->
+                <td class="prod">
+                    <img src="image/uparrow.png" height=36 width=22 />
+                </td>
+                <td></td> <!-- col2 -->
+                <!-- col3 spanned-->
+                <!-- col4 spanned-->
+                <td></td> <!-- col5 -->
+                <td></td> <!-- col6 -->
+                <td></td> <!-- col7 -->
+                <td></td> <!-- col8 -->
+                <!-- col9 -->
+                <td><input type="image" src="image/noIllness.png" id="illness10" height="50px" width="50px" onclick="buttonClickIllness10()" value="0"></input></td>
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>         
+
+            <!-- row 14 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noAndroid.png" id="android1" height="50px" width="50px" onclick="buttonClickAndroid1()" value="0"></input></td>
+                <!-- col1 -->
+                <td rowspan="4">
+                    <table class="region1">
+                        <tr><td></td><td></td></tr>
+                        <tr>
+                            <td class="meeple"><input type="image" src="image/noHumanFirst.png" id="humanFirst1" height="50px" width="50px" onclick="buttonClickHumanFirst1()" value="0"></input></td>
+                            <td class="meeple"><input type="image" src="image/noOrgCrime.png" id="orgCrime1" height="50px" width="50px" onclick="buttonClickOrgCrime1()" value="0"></input></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="image" src="image/noPriSec.png" id="priSec1" height="50px" width="50px" onclick="buttonClickPriSec1()" value="0"></input></td>
+                        </tr>
+                        <tr><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td></td> <!-- col2 -->
+                <!-- col3 spanned-->
+                <!-- col4 spanned-->
+                <td></td> <!-- col5 -->
+                <!-- col6 -->
+                <td rowspan=4 colspan=5>
+                    <table style="background-color: white; text-align: left;">
+                        <tr>
+                            <th style="font-size:25px;">Asset</th>
+                            <td style="text-align: right;">
+                                <select style="font-size:25px;">
+                                    <option>Select...</option>
+                                    <option>Aaron Marrón</option>
+                                    <option>Alex Westlund</option>
+                                    <option>Bernice Mai</option>
+                                    <option>Braintrust</option>
+                                    <option>Bryan Stinson</option>
+                                    <option>Caprice Nisei</option>
+                                    <option>Chief Gorman</option>
+                                    <option>Coach Walden</option>
+                                    <option>Eiko</option>
+                                    <option>Elizabeth Mills</option>
+                                    <option>Floyd 2X3A7C</option>
+                                    <option>Fumiko Yamamori</option>
+                                    <option>Gurren Imaishi</option>
+                                    <option>Hernando Cortez</option>
+                                    <option>Isable McGuire</option>
+                                    <option>Jackson Howard</option>
+                                    <option>Lily Lockwell</option>
+                                    <option>Locust Company</option>
+                                    <option>Marco Cubrero</option>
+                                    <option>Mark Yale</option>
+                                    <option>Midori</option>
+                                    <option>Monica Singh</option>
+                                    <option>Mr. Li</option>
+                                    <option>"Mr. White"</option>
+                                    <option>Naoko Watanabe</option>
+                                    <option>Rachel Beckmann</option>
+                                    <option>Saul Eustecio</option>
+                                    <option>Sunny LeBeau</option>
+                                    <option>Susan Chen</option>
+                                    <option>Tanaka</option>
+                                    <option>The Fall Guy</option>
+                                    <option>Thomas Haas</option>
+                                    <option>Toshiyuki Sakai</option>
+                                    <option>Wong Ya Ching</option>                                    
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;" colspan="2">Offers</th>
+                            <th style="font-size:25px;" colspan="3">Votes</th>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;">Main Offer</th>
+                            <td style="text-align: right;">
+                                <select style="font-size:25px;">
+                                    <option>Select...</option>
+                                    <option>GlobalSec: Ruthless Tactics</option>
+                                    <option>HB: Underpaid, Overclocked</option>
+                                    <option>Jinteki: Mandatory Quarantine</option>
+                                    <option>Melange: Energy for All</option>
+                                    <option>NBN: Sweeps Week</option>
+                                    <option>Weyland: Massive Reconstruction</option>
+                                    <option>Biotech: Clean Slate</option>
+                                    <option>Biotech: Clinical Trials</option>
+                                    <option>Biotech: Information Procurement</option>
+                                    <option>Biotech: Unorthodox Knowledge</option>
+                                    <option>Construction: Ark Construction</option>
+                                    <option>Construction: Budget Renovations</option>
+                                    <option>Construction: Gentrification</option>
+                                    <option>Construction: Vanity Project</option>
+                                    <option>Labor: Efficiency Experts</option>
+                                    <option>Labor: High-Risk Investments</option>
+                                    <option>Labor: Labor Solutions</option>
+                                    <option>Labor: Liquidation</option>
+                                    <option>Media: 24/7 Live Feeds</option>
+                                    <option>Media: Media Circus</option>
+                                    <option>Media: Puff Piece</option>
+                                    <option>Media: Spin Doctors</option>
+                                    <option>Security: Arrest Orders</option>
+                                    <option>Security: Full Deployment</option>
+                                    <option>Security: Riot Control</option>
+                                    <option>Security: Scorched Earth</option>                                    
+                                </select>
+                            </td>
+                            <td style="text-align: right;"><input style="font-size:25px; text-align: right;" type="text" size="1" id="mainVotes" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="mainInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="mainDec()">-</button></td>
+                        </tr>
+                        <tr>
+                            <th style="font-size:25px;">Counter Offer</th>
+                            <td style="text-align: right;">
+                                <select style="font-size:25px;">
+                                    <option>Select...</option>
+                                    <option>GlobalSec: Ruthless Tactics</option>
+                                    <option>HB: Underpaid, Overclocked</option>
+                                    <option>Jinteki: Mandatory Quarantine</option>
+                                    <option>Melange: Energy for All</option>
+                                    <option>NBN: Sweeps Week</option>
+                                    <option>Weyland: Massive Reconstruction</option>
+                                    <option>Biotech: Clean Slate</option>
+                                    <option>Biotech: Clinical Trials</option>
+                                    <option>Biotech: Information Procurement</option>
+                                    <option>Biotech: Unorthodox Knowledge</option>
+                                    <option>Construction: Ark Construction</option>
+                                    <option>Construction: Budget Renovations</option>
+                                    <option>Construction: Gentrification</option>
+                                    <option>Construction: Vanity Project</option>
+                                    <option>Labor: Efficiency Experts</option>
+                                    <option>Labor: High-Risk Investments</option>
+                                    <option>Labor: Labor Solutions</option>
+                                    <option>Labor: Liquidation</option>
+                                    <option>Media: 24/7 Live Feeds</option>
+                                    <option>Media: Media Circus</option>
+                                    <option>Media: Puff Piece</option>
+                                    <option>Media: Spin Doctors</option>
+                                    <option>Security: Arrest Orders</option>
+                                    <option>Security: Full Deployment</option>
+                                    <option>Security: Riot Control</option>
+                                    <option>Security: Scorched Earth</option>                                    
+                                </select>
+                            </td>
+                            <td style="text-align: right;"><input style="font-size:25px; text-align: right;" type="text" size="1" id="counterVotes" value="0"></input></td>
+                            <td><button style="font-size:25px;" onclick="counterInc()">+</button></td>
+                            <td><button style="font-size:25px;" onclick="counterDec()">-</button></td>
+                        </tr>
+                    </table>
+                </td>
+                <!-- col7 spanned -->
+                <!-- col8 spanned -->
+                <!-- col9 spanned-->
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+            
+            <!-- row 15 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noUnrest.png" id="unrest1" height="50px" width="50px" onclick="buttonClickUnrest1()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <!-- col6 spanned -->
+                <!-- col7 spanned -->
+                <!-- col8 spanned -->
+                <!-- col9 spanned -->
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 16-->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noDevelopment.png" id="development1" height="50px" width="50px" onclick="buttonClickDevelopment1()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <!-- col6 spanned -->
+                <!-- col7 spanned -->
+                <!-- col8 spanned -->
+                <!-- col9 spanned -->
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+            <!-- row 17 -->
+            <tr>
+                <!-- col0 -->
+                <td><input type="image" src="image/noIllness.png" id="illness1" height="50px" width="50px" onclick="buttonClickIllness1()" value="0"></input></td>
+                <!-- col1 spanned -->
+                <td></td> <!-- col2 -->
+                <td></td> <!-- col3 -->
+                <td></td> <!-- col4 -->
+                <td></td> <!-- col5 -->
+                <!-- col6 spanned -->
+                <!-- col7 spanned -->
+                <!-- col8 spanned -->
+                <!-- col9 spanned -->
+                <!-- col10 spanned -->
+                <!-- col11 spanned -->
+            </tr>
+
+        </table>
+    
+    </body>
+
+</html>
+

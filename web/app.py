@@ -35,7 +35,7 @@ listBioTech.append(Offer(
     "BioTech",
     "Clean Slate",
     "Remove up to 2 illness tokens from the city. Then place 1 outage\
-    outage token in a district where you removed an illness token.\
+    token in a district where you removed an illness token.\
     Illness tokens do not increase threat during this action."
 ))
 listBioTech.append(Offer(
@@ -78,7 +78,7 @@ listConstruction.append(Offer(
 listConstruction.append(Offer(
     "Construction",
     "Vanity Project",
-    "Choose 1 player. That player gains 2 capital, or 4 if he supported this offer. Then, \
+    "Choose 1 player. That player gains 2 capital, or 4 if they supported this offer. Then, \
     discard 1 asset card belonging to that player, if possible."
 ))
 
@@ -103,7 +103,7 @@ listLabor.append(Offer(
 listLabor.append(Offer(
     "Labor",
     "Liquidation",
-    "Choose  district that is not in strike or outage. That district immediately produces all of \
+    "Choose a district that is not in strike or outage. That district immediately produces all of \
     its resources; orgcrime units do no affect this production. Then, increase that district's unrest to strike."
 ))
 
@@ -120,7 +120,7 @@ listMedia.append(Offer(
 listMedia.append(Offer(
     "Media",
     "Puff Piece",
-    "Each player may draw 2 action cards of a type of his choice, or 3 if he supported this offer, \
+    "Each player may draw 2 action cards of a type of his choice, or 3 if they supported this offer, \
     starting with the active player an proceeding clockwise."
 ))
 listMedia.append(Offer(
@@ -138,8 +138,8 @@ listSecurity.append(Offer(
 listSecurity.append(Offer(
     "Security",
     "Full Deployment",
-    "Choose another player and choose whether he draws 5 action cards of at type of your \
-    choice or flips his emergency action card faceup."
+    "Choose another player and choose whether they draw 5 action cards of at type of your \
+    choice or flips their emergency action card faceup."
 ))
 listSecurity.append(Offer(
     "Security",
@@ -302,6 +302,40 @@ def security():
             return jsonify({'ok': False, 'message': str(e)}), 400
 
         return jsonify(category=card.category, name=card.name, text=card.text), 200
+
+# endpoint for viewing offers
+# @app.route("/newangeles/offers", methods=["GET"])
+# def offers():
+#    global listBioTech
+#    global listConstruction
+#    global listLabor
+#    global listMedia
+#    global listSecurity
+#
+#    if request.method == 'GET':
+#        try:
+#            offerList
+#            offerCategory= request.args.get('category')
+#            offerName = requests.get.('offer')
+#            if offerCategory == 'biotech':
+#                offerList = listBioTech
+#            elif offerCategory == 'construction':
+#                offerList = listConstruction
+#            elif offerCategory == 'labor':
+#                offerList = listLabor
+#            elif offerCategory == 'media':
+#                offerList = listMedia
+#            else offerCategory == 'security':
+#                offerList = listSecurity
+#
+#            for i in in offerList:
+#                if i.name == offerName:
+#                    card = i
+#
+#        except BaseException as e:
+#            return jsonify({'ok': False, 'message': str(e)}), 400
+#
+#        return jsonify(category=card.category, name=card.name, text=card.text), 200
 
 if __name__ == '__main__':
     
