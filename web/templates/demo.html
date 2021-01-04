@@ -104,7 +104,7 @@
 
             var arrInvestments = [
                 {Name: "-",
-                CardText: "-"},
+                CardText: ""},
                 {Name: "Healthcare Initiative",
                 CardText: "Gain capital based on the number of illness tokens in the city:<table><tr><td>\
                     2 illnesses: 3 capital</td></tr><tr><td>3 illnesses: 5 capital</td></tr><tr><td>4+ illnesses: 7 capital</td></tr></table>"},
@@ -143,7 +143,7 @@
             ];
 
             var arrAssets = [
-                {Name: "Select...", CardText: "-"},
+                {Name: "Select...", CardText: ""},
                 {Name: "Aaron Marron", CardText: "When another player discards 1 or more cards to propose a counteroffer, they give those cards to you instead of placing them in the discard pile."},
                 {Name: "Alex Westlund", CardText: "END OF TURN: Choose 2 assests in play and swap them. If you choose any of your assets, lose 2 capital before the swap."},
                 {Name: "Bernice Mai", CardText: "END OF TURN: Give up to 2 cards from your hand to another player to gain capital equal to the number of cards given."},
@@ -180,50 +180,50 @@
                 {Name: "Wong Ya Ching", CardText: "When the effect of an illness token increase threat, gain 2 capital."}
                 ];
 
-                var arrOffers = [
-                    {Name: "Select...", CardText: "-"},
-                    {Name: "Clean Slate", CardText: "Remove up to 2 illness tokens from the city. Then place 1 outage token in a district where you removed an illness token. Illness tokens do not increase threat during this action."},
-                    {Name: "Clinical Trials", CardText: "Remove 1 illness token in any district. Illness tokens do not increase threat during this action."},
-                    {Name: "Information Procurement", CardText: "Reduce threat by 2 if the players spend capital equal to or exceeding the number of players in the game. Each player can spend any amount of capital, starting with the active player and proceeding clockwise."},
-                    {Name: "Unorthodox Knowledge", CardText: "Look at the top 3 cards of the event deck. Place 1 card on the bottom of the deck and return the rest to the top of the deck in any order."},
-                    {Name: "Ark Construction", CardText: "Place 1 development token in any district."},
-                    {Name: "Budget Renovations", CardText: "Remove up to 2 outage tokens from the city. Then, increase unrest by 1 stage in each district where you removed an outage token."},
-                    {Name: "Gentrification", CardText: "Remove 1 outage token from any district. Then, place 1 prisec unit in that district if it does not contain a prisec unit. Each enemy unit in that district moves."},
-                    {Name: "Vanity Project", CardText: "Choose 1 player. That player gains 2 capital, or 4 if they supported this offer. Then, discard 1 asset card belonging to that player, if possible."},
-                    {Name: "Efficiency Experts", CardText: "Move 1 android token to a district that does not contain an android token. Illness tokens do not increase threat during this action."},
-                    {Name: "High-Risk Investments", CardText: "Choose 3 players. Ther first player you choose gains 3 capital, the second player gains 2 capital, the third player gains 1 capital."},
-                    {Name: "Labor Solutions", CardText: "Move up to 3 android tokens to districts that do not contain android tokens. Then, place 1 orgcrime unit in any district."},
-                    {Name: "Liquidation", CardText: "Choose a district that is not in strike or outage. That district immediately produces all of its resources; orgcrime units do no affect this production. Then, increase that district's unrest to strike."},
-                    {Name: "24/7 Live Feed", CardText: "Decrease unrest by 1 stage in any district or remove 1 orgcrime unit."},
-                    {Name: "Media Circus", CardText: "Decrease unrest by 2 stages in any district. Then, place 1 Human First unit in any district."},
-                    {Name: "Puff Piece", CardText: "Each player may draw 2 action cards of a type of his choice, or 3 if they supported this offer, starting with the active player an proceeding clockwise."},
-                    {Name: "Spin Doctors", CardText: "Decrease unrest by 1 stage in up to 2 districts. Then, reduce credits in the supply by 1. If credits are already at '0', increase threat by 1 instead."},
-                    {Name: "Arrest Orders", CardText: "Place 1 prisec unit in any district to remove all other units in that district."},
-                    {Name: "Full Deployment", CardText: "Choose another player and choose whether they draw 5 action cards of a type of your choice or flips their emergency action card faceup."},
-                    {Name: "Riot Control", CardText: "Remove 1 prisec unit from any district to remove up to 2 enemy units from the city. Then, increase unrest by 1 stage in 1 district not in strike or outage."},
-                    {Name: "Scorched Earth", CardText: "Place 1 outage token in any district no in outage to remove all enemy units in that district, and in another district in that tier."}
-                    ];
+            var arrOffers = [
+                {Name: "Select...", CardText: ""},
+                {Name: "Clean Slate", CardText: "Remove up to 2 illness tokens from the city. Then place 1 outage token in a district where you removed an illness token. Illness tokens do not increase threat during this action."},
+                {Name: "Clinical Trials", CardText: "Remove 1 illness token in any district. Illness tokens do not increase threat during this action."},
+                {Name: "Information Procurement", CardText: "Reduce threat by 2 if the players spend capital equal to or exceeding the number of players in the game. Each player can spend any amount of capital, starting with the active player and proceeding clockwise."},
+                {Name: "Unorthodox Knowledge", CardText: "Look at the top 3 cards of the event deck. Place 1 card on the bottom of the deck and return the rest to the top of the deck in any order."},
+                {Name: "Ark Construction", CardText: "Place 1 development token in any district."},
+                {Name: "Budget Renovations", CardText: "Remove up to 2 outage tokens from the city. Then, increase unrest by 1 stage in each district where you removed an outage token."},
+                {Name: "Gentrification", CardText: "Remove 1 outage token from any district. Then, place 1 prisec unit in that district if it does not contain a prisec unit. Each enemy unit in that district moves."},
+                {Name: "Vanity Project", CardText: "Choose 1 player. That player gains 2 capital, or 4 if they supported this offer. Then, discard 1 asset card belonging to that player, if possible."},
+                {Name: "Efficiency Experts", CardText: "Move 1 android token to a district that does not contain an android token. Illness tokens do not increase threat during this action."},
+                {Name: "High-Risk Investments", CardText: "Choose 3 players. Ther first player you choose gains 3 capital, the second player gains 2 capital, the third player gains 1 capital."},
+                {Name: "Labor Solutions", CardText: "Move up to 3 android tokens to districts that do not contain android tokens. Then, place 1 orgcrime unit in any district."},
+                {Name: "Liquidation", CardText: "Choose a district that is not in strike or outage. That district immediately produces all of its resources; orgcrime units do no affect this production. Then, increase that district's unrest to strike."},
+                {Name: "24/7 Live Feed", CardText: "Decrease unrest by 1 stage in any district or remove 1 orgcrime unit."},
+                {Name: "Media Circus", CardText: "Decrease unrest by 2 stages in any district. Then, place 1 Human First unit in any district."},
+                {Name: "Puff Piece", CardText: "Each player may draw 2 action cards of a type of his choice, or 3 if they supported this offer, starting with the active player an proceeding clockwise."},
+                {Name: "Spin Doctors", CardText: "Decrease unrest by 1 stage in up to 2 districts. Then, reduce credits in the supply by 1. If credits are already at '0', increase threat by 1 instead."},
+                {Name: "Arrest Orders", CardText: "Place 1 prisec unit in any district to remove all other units in that district."},
+                {Name: "Full Deployment", CardText: "Choose another player and choose whether they draw 5 action cards of a type of your choice or flips their emergency action card faceup."},
+                {Name: "Riot Control", CardText: "Remove 1 prisec unit from any district to remove up to 2 enemy units from the city. Then, increase unrest by 1 stage in 1 district not in strike or outage."},
+                {Name: "Scorched Earth", CardText: "Place 1 outage token in any district no in outage to remove all enemy units in that district, and in another district in that tier."}
+                ];
 
-                var arrEmergencyActions = [
-                    {Name: "Select...",
-                    CardText: "-"},
-                    {Name: "Ruthless Tactics",
-                    CardText: "Remove up to 4 enemy units from the city.<br>Then, increase unrest by 1 stage in 2 districts \
-                    not in strike or outage."},
-                    {Name: "Unpaid, Overclocked",
-                    CardText: "Choose up to 2 resources and increase their quantity in the supply by 1.<br>Then, gain 4 capital \
-                    and place 2 Human First units in the city."},
-                    {Name: "Mandatory Quarantine",
-                    CardText: "Remove up to 4 illness tokens from the city. Then, place 2 outage tokens in the city.<br>Illness \
-                    tokens do not increase threat during this action."},
-                    {Name: "Energy for All",
-                    CardText: "Each player draws 4 actions cards of a type of their choice, starting with the<br>active player \
-                    and proceeding clockwise."},
-                    {Name: "Sweeps Week",
-                    CardText: "Reduce unrest by up to 4 stages in any districts. Then, place 2 illness tokens in any districts."},
-                    {Name: "Massive Reconstruction",
-                    CardText: "Remove up to 3 outage tokens from the city. Then, place 2 orgcrime units in the city."}
-                    ];
+            var arrEmergencyActions = [
+                {Name: "Select...",
+                CardText: ""},
+                {Name: "Ruthless Tactics",
+                CardText: "Remove up to 4 enemy units from the city.<br>Then, increase unrest by 1 stage in 2 districts \
+                not in strike or outage."},
+                {Name: "Unpaid, Overclocked",
+                CardText: "Choose up to 2 resources and increase their quantity in the supply by 1.<br>Then, gain 4 capital \
+                and place 2 Human First units in the city."},
+                {Name: "Mandatory Quarantine",
+                CardText: "Remove up to 4 illness tokens from the city. Then, place 2 outage tokens in the city.<br>Illness \
+                tokens do not increase threat during this action."},
+                {Name: "Energy for All",
+                CardText: "Each player draws 4 actions cards of a type of their choice, starting with the<br>active player \
+                and proceeding clockwise."},
+                {Name: "Sweeps Week",
+                CardText: "Reduce unrest by up to 4 stages in any districts. Then, place 2 illness tokens in any districts."},
+                {Name: "Massive Reconstruction",
+                CardText: "Remove up to 3 outage tokens from the city. Then, place 2 orgcrime units in the city."}
+                ];
 
             var arrHand = [];
             
@@ -429,7 +429,9 @@
 
             function resetSelect(id) {
                 var dropdown = document.getElementById(id);
+                var offerTextbox = document.getElementById(id + "Textbox");
                 dropdown.value = 0;
+                offerTextbox.value = "-";
             }
 
         </script>
