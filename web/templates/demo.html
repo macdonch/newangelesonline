@@ -431,7 +431,7 @@
                 var dropdown = document.getElementById(id);
                 var offerTextbox = document.getElementById(id + "Textbox");
                 dropdown.value = 0;
-                offerTextbox.value = "-";
+                offerTextbox.innerHTML = "";
             }
 
         </script>
@@ -556,9 +556,9 @@
                         <tr>
                             <td>
                                 <select id="ea1" onchange="populateEa('ea1')">
-                                    <option value="0" selected="selected">-</option>
+                                    <option value="0">-</option>
                                     <option value="1">GlobalSec</option>
-                                    <option value="2">HB</option>
+                                    <option value="2" selected="selected" onload="populateEa('ea1')">HB</option>
                                     <option value="3">Jinteki</option>
                                     <option value="4">Melange</option>
                                     <option value="5">NBN</option>
@@ -617,7 +617,7 @@
             </tr>
 
             <tr>
-                <th colspan="2" class="inner">Asset</th>
+                <th class="inner">Asset</th>
                 <th class="inner">Text</th>
             </tr>
             <tr>
