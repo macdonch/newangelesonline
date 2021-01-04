@@ -556,9 +556,9 @@
                         <tr>
                             <td>
                                 <select id="ea1" onchange="populateEa('ea1')">
-                                    <option value="0">-</option>
+                                    <option value="0" selected="selected">-</option>
                                     <option value="1">GlobalSec</option>
-                                    <option value="2" selected="selected" onload="populateEa('ea1')">HB</option>
+                                    <option value="2">HB</option>
                                     <option value="3">Jinteki</option>
                                     <option value="4">Melange</option>
                                     <option value="5">NBN</option>
@@ -617,11 +617,11 @@
             </tr>
 
             <tr>
-                <th class="inner">Asset</th>
+                <th class="inner" colspan="2">Asset</th>
                 <th class="inner">Text</th>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <select id="assetOffer" onchange="populateAsset('assetOffer')">
                         <option value="0" selected="selected">-</option>
                         <option value="1">Aaron Marron</option>
@@ -2698,6 +2698,24 @@
                 </td>
             </tr>
         </table>
+
+        <script>
+            (function populateFactionEa() {
+                id = "ea1"
+                var dropdown = document.getElementById(id);
+                // value for HB
+                dropdown.value = 2;
+                var selection = dropdown.value;
+
+                var cardName = arrEmergencyActions[selection].Name;
+                var eaNamebox = document.getElementById(id + "Namebox");
+                eaNamebox.innerHTML = cardName;
+
+                var cardText = arrEmergencyActions[selection].CardText;
+                var eaTextbox = document.getElementById(id + "Textbox");
+                eaTextbox.innerHTML = cardText;
+            })();
+        </script>
 
     </body>
 
