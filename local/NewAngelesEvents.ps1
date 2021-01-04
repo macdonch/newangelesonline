@@ -319,7 +319,6 @@ switch ($selection)
                 $html += "<tr><td style='border: solid black 1px'>Org Crime</td><td style='border: solid black 1px'>$oc</td></tr>"
                 $html += "<tr><td style='border: solid black 1px'>Outage</td><td style='border: solid black 1px'>$outage</td></tr>"
                 $html += "<tr><td style='border: solid black 1px'>Illness</td><td style='border: solid black 1px'>$illness</td></tr>"
-                $html += "<tr><td style='border: solid black 1px'>Illness</td><td style='border: solid black 1px'>$illness</td></tr>"
                 $html += "<tr><td style='border: solid black 1px'>Card Back</td><td style='border: solid black 1px'>$category</td></tr>"
                 $html += "<tr><td style='border: solid black 1px'>Assets</td><td style='border: solid black 1px'>$assets</td></tr>"
                 $html += "</table></td></tr>"

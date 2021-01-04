@@ -60,37 +60,37 @@ $arrFactions = @(
         name="GlobalSec";
         caption="The Conflict Solution";
         text="When an enemy unit is removed from a district, gain 1 capital.";
-        url="http:\\newangeles.hopto.org\globalsec"
+        url="http:\\newangeles.hopto.org\newangeles\globalsec"
     },
     [Faction]@{
         name="Haas-Bioroid";
         caption="Engineering the Future";
         text="When 1 or more android tokens are moved, gain 2 capital.";
-        url="http:\\newangeles.hopto.org\hb"
+        url="http:\\newangeles.hopto.org\newangeles\hb"
     },
     [Faction]@{
         name="Jinteki";
         caption="Personal Evolution";
         text="When an illness token is removed from a district, gain 2 capital.";
-        url="http:\\newangeles.hopto.org\jinteki"
+        url="http:\\newangeles.hopto.org\newangeles\jinteki"
     },
     [Faction]@{
         name="Melange Mining";
         caption="Powering Change";
         text="When an action card is resolved, if threat does not increase by at least 2, gain 3 capita.";
-        url="http:\\newangeles.hopto.org\melange"
+        url="http:\\newangeles.hopto.org\newangeles\melange"
     },
     [Faction]@{
         name="NBN";
         caption="Making News";
         text="When unrest decreases, gain 1 capital for each stage decreased.";
-        url="http:\\newangeles.hopto.org\nbn"
+        url="http:\\newangeles.hopto.org\newangeles\nbn"
     },
     [Faction]@{
         name="Weyland Consortium";
         caption="Building a Better World";
         text="When an outage token is removed from a district, gain 2 capital.";
-        url="http:\\newangeles.hopto.org\weyland"
+        url="http:\\newangeles.hopto.org\newangeles\weyland"
     }
 )
 

@@ -48,7 +48,7 @@ listBioTech.append(Offer(
     "BioTech",
     "Information Procurement",
     "Reduce threat by 2 if the players spend capital equal to or exceeding \
-    the number of players in the game. Each playaer can spend any amount \
+    the number of players in the game. Each player can spend any amount \
     of capital, starting with the active player and proceeding clockwise."
 ))
 listBioTech.append(
@@ -85,7 +85,7 @@ listConstruction.append(Offer(
 listLabor.append(Offer(
     "Labor",
     "Efficiency Experts",
-    "Move 1 android token to a district that does no contain an android token. Illness \
+    "Move 1 android token to a district that does not contain an android token. Illness \
     tokens do not increase threat during this action."
 ))
 listLabor.append(Offer(
