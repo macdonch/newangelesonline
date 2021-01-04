@@ -188,6 +188,11 @@ def nbn():
 def weyland():
     return render_template("weyland.html")
 
+# endpoint for demo
+@app.route('/newangeles/demo')
+def demo():
+    return render_template("demo.html")
+
 # endpoint for BioTech deck
 @app.route("/newangeles/decks/biotech", methods=["GET"])
 def biotech():
